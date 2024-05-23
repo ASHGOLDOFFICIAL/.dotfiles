@@ -1,0 +1,9 @@
+[credential]
+	helper = oauth
+
+[http]
+	postBuffer = 524288000
+
+[user]
+	email = "104313094+ASHGOLDOFFICIAL@users.noreply.github.com"
+	name = "Andrey Shaat"
