@@ -7,13 +7,6 @@ return {
     },
 
     {
-        'numToStr/Comment.nvim',
-        config = function(_, opts)
-            require('Comment').setup()
-        end
-    },
-
-    {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         cmd = { "TroubleToggle", "Trouble" },
