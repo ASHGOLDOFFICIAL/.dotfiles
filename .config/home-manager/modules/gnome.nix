@@ -186,6 +186,9 @@ in {
       "org/gnome/shell/extensions/alphabetical-app-grid" = {
         folder-order-position = "start";
       };
+      "org/gnome/shell/extensions/bedtime-mode" = {
+        ondemand-button-location = "menu";
+      };
       "org/gnome/shell/extensions/blur-my-shell/panel" = {
         blur = false;
       };
