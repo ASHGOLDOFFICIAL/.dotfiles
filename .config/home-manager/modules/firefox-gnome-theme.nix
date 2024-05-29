@@ -23,28 +23,29 @@ in {
   config = lib.mkIf cfg.enable {
     programs.firefox.profiles = builtins.listToAttrs (map (name: {
       name = name;
-      value = let
-        importColorchemes = theme: lib.optionalString (theme != "default") ''
-          @import "${firefox-gnome-theme}/theme/colors/light-${theme}.css";
-          @import "${firefox-gnome-theme}/theme/colors/dark-${theme}.css";
-        '';
-      in {
-        settings = {
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          "svg.context-properties.content.enabled" = true;
-          "browser.theme.dark-private-windows" = lib.mkDefault false;
-          "browser.uidensity" = lib.mkDefault 0;
-          "widget.gtk.rounded-bottom-corners.enabled" = lib.mkDefault true;
+      value =
+        let
+          importColorchemes = theme: lib.optionalString (theme != "default") ''
+            @import "${firefox-gnome-theme}/theme/colors/light-${theme}.css";
+            @import "${firefox-gnome-theme}/theme/colors/dark-${theme}.css";
+          '';
+        in {
+          settings = {
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "svg.context-properties.content.enabled" = true;
+            "browser.theme.dark-private-windows" = lib.mkDefault false;
+            "browser.uidensity" = lib.mkDefault 0;
+            "widget.gtk.rounded-bottom-corners.enabled" = lib.mkDefault true;
+          };
+
+          userChrome = lib.mkBefore (''
+            @import "${firefox-gnome-theme}/userChrome.css";
+          '' + importColorchemes cfg.theme);
+
+          userContent = lib.mkBefore (''
+            @import "${firefox-gnome-theme}/userContent.css";
+          '' + importColorchemes cfg.theme);
         };
-
-        userChrome = lib.mkBefore (''
-          @import "${firefox-gnome-theme}/userChrome.css";
-        '' + importColorchemes cfg.theme);
-
-        userContent = lib.mkBefore (''
-          @import "${firefox-gnome-theme}/userContent.css";
-        '' + importColorchemes cfg.theme);
-      };
     }) cfg.profiles);
   };
 }
