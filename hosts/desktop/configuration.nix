@@ -6,17 +6,21 @@
     ../../defaults.nix
   ];
 
-  boot.loader.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   custom = {
+    firefox.enable = true;
     gaming.enable = true;
     gnome.enable = true;
     nvidia.enable = true;
   };
   
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.epkowa ];
+  hardware = {
+    nvidia.open = false;
+    sane = {
+      enable = true;
+      extraBackends = [ pkgs.epkowa ];
+    };
   };
 
   i18n = {
