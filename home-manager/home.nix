@@ -18,6 +18,11 @@
     };
   };
 
+  i18n.glibcLocales = pkgs.glibcLocales.override {
+    allLocales = false;
+    locales = [ "en_US.UTF-8/UTF-8" ];
+  };
+
   home = {
     homeDirectory = "/home/ashgoldofficial";
     stateVersion = "23.05";
@@ -70,6 +75,8 @@
       };
     };
 
+    home-manager.enable = true;
+
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -93,25 +100,10 @@
       ];
     };
 
-    # thunderbird = let
-    #   thunderbird-gnone-theme = pkgs.callPackage ./thunderbird-gnome-theme.nix {};
-    # in {
-    #   enable = true;
-    #   profiles.default = {
-    #     isDefault = true;
-    #     settings = {
-    #       "svg.context-properties.content.enabled" = true;
-    #       "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-    #     };
-    #     userChrome = ''
-    #       @import "${thunderbird-gnone-theme}/userChrome.css";
-    #     '';
-    #     userContent = ''
-    #       @import "${thunderbird-gnone-theme}/userContent.css";
-    #     '';
-    #   };
-    # };
+  };
 
-    home-manager.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
   };
 }
