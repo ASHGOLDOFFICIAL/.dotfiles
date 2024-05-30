@@ -28,6 +28,17 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/disk" =
+    { device = "/dev/disk/by-uuid/509ABDD09ABDB338";
+      fsType = "ntfs-3g"; 
+      options = [ "rw" "uid=1000" "gid=100" ];
+    };
+  
+  fileSystems."/home/common_files" =
+    { device = "/dev/disk/by-uuid/7ee33afb-31af-4e53-a402-bda356e7a4c4";
+      fsType = "ext4"; 
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/1803425b-5e21-443d-9fd1-c76f84ece624"; }
     ];
