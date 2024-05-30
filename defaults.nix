@@ -66,7 +66,6 @@ in {
     vlc
     wdiff
     webcord
-    wine
     wl-clipboard
   ]);
 
