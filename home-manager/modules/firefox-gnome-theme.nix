@@ -2,7 +2,7 @@
 
 let
   cfg = config.custom.firefox-gnome-theme;
-  firefox-gnome-theme = pkgs.callPackage ../firefox-gnome-theme.nix {};
+  firefox-gnome-theme = pkgs.callPackage ../packages/firefox-gnome-theme.nix {};
 in {
   options.custom.firefox-gnome-theme = {
     enable = lib.mkEnableOption "a GNOME theme for Firefox";
