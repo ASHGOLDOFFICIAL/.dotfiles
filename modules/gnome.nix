@@ -38,6 +38,7 @@ in {
         alphabetical-app-grid
         bluetooth-battery-meter
         blur-my-shell
+        caffeine
         forge
         gnome-bedtime
         rounded-corners
