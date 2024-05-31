@@ -34,7 +34,7 @@
       options = [ "rw" "uid=1000" "gid=100" ];
     };
   
-  fileSystems."/home/common_files" =
+  fileSystems."/home/media" =
     { device = "/dev/disk/by-uuid/7ee33afb-31af-4e53-a402-bda356e7a4c4";
       fsType = "ext4"; 
     };

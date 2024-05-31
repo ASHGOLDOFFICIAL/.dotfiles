@@ -7,13 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, aagl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let 
     system = "x86_64-linux";
   in {
@@ -26,14 +22,7 @@
       
       ferrum = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [
-          ./hosts/desktop/configuration.nix
-          {
-            imports = [ aagl.nixosModules.default ];
-            nix.settings = aagl.nixConfig;
-            programs.anime-game-launcher.enable = true;
-          }
-        ];
+        modules = [ ./hosts/desktop/configuration.nix ];
       };
 
     };
