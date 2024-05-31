@@ -1,12 +1,14 @@
+# All custom modules
 { ... }:
 
 {
   imports = [
-    ./gnome.nix
+    ./emulators.nix
+    ./firefox.nix
     ./gaming.nix
+    ./gnome.nix
+    ./iwd.nix
     ./nvidia.nix
     ./plasma.nix
-    ./firefox.nix
-    ./emulators.nix
   ];
 }

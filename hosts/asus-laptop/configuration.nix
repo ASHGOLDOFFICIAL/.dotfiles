@@ -16,7 +16,14 @@
     firefox.enable = true;
     gaming.enable = true;
     gnome.enable = true;
-    nvidia.enable = true;
+    iwd.enable = true;
+    nvidia = {
+      enable = true;
+      laptop = {
+        enable = true;
+        syncSpecialisation = "ac";
+      };
+    };
   };
   
   hardware = {
@@ -25,22 +32,16 @@
       settings.General.Experimental = true;
     };
     cpu.intel.updateMicrocode = true;
-    nvidia.prime = {
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      prime = {
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
   };
   
-  networking = {
-    hostName = "aurum";
-    networkmanager.wifi.backend = "iwd";
-    wireless.iwd = {
-      enable = true;
-      settings.Settings.AutoConnect = true;
-    };
-  };
+  networking.hostName = "aurum";
 
   programs = {
     adb.enable = true;
@@ -49,7 +50,6 @@
 
   services = {
     asusd.enable = true;
-    fwupd.enable = true;
     power-profiles-daemon.enable = !config.services.tlp.enable;
     thermald.enable = true;
     tlp = {
@@ -75,27 +75,10 @@
     };
   };
   
-  system.nixos.tags = [ "offload" ];
   users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
 
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
-  };
-
-  specialisation = {
-    on-ac.configuration = {
-      system.nixos.tags = lib.mkForce [ "sync" ];
-
-      hardware.nvidia = {
-        prime = {
-          offload = {
-            enable = lib.mkForce false;
-            enableOffloadCmd = lib.mkForce false;
-          };
-          sync.enable = lib.mkForce true;
-        };
-      };
-    };
   };
 }

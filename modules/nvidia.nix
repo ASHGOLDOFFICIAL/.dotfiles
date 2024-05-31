@@ -7,6 +7,15 @@ let
 in {
   options.custom.nvidia = {
     enable = lib.mkEnableOption "Nvidia specific options";
+    laptop = {
+      enable = lib.mkEnableOption "PRIME offload by default";
+      syncSpecialisation = lib.mkOption {
+        default = null;
+        description = "Name of specialisation on which to enable PRIME Sync";
+        example = "on-the-go";
+        type = with lib.types; nullOr str;
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -17,7 +26,7 @@ in {
         modesetting.enable = true;
         nvidiaSettings = true;
         open = lib.mkDefault true;
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
         powerManagement = {
           enable = lib.mkDefault true;
           finegrained = false;
@@ -30,6 +39,20 @@ in {
       };
     };
 
+    hardware.nvidia.prime = lib.mkIf cfg.laptop.enable {
+      offload.enable = true;
+      offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
+    };
+
     services.xserver.videoDrivers = [ "nvidia" ];
+
+    specialisation = lib.mkIf (cfg.laptop.syncSpecialisation != null) {
+      ${cfg.laptop.syncSpecialisation}.configuration = {
+        hardware.nvidia.prime = {
+          offload.enable = lib.mkForce false;
+          sync.enable = true;
+        };
+      };
+    };
   };
 }

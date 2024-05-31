@@ -18,17 +18,24 @@
     system = "x86_64-linux";
   in {
     nixosConfigurations = {
+      
       aurum = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [ ./hosts/asus-laptop/configuration.nix ];
       };
+      
       ferrum = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          aagl.nixosModules.default
           ./hosts/desktop/configuration.nix
+          {
+            imports = [ aagl.nixosModules.default ];
+            nix.settings = aagl.nixConfig;
+            programs.anime-game-launcher.enable = true;
+          }
         ];
       };
+
     };
 
     homeConfigurations = {
