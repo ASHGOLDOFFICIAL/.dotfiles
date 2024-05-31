@@ -26,7 +26,7 @@ in {
         modesetting.enable = true;
         nvidiaSettings = true;
         open = lib.mkDefault true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.production;
         powerManagement = {
           enable = lib.mkDefault true;
           finegrained = false;
@@ -36,12 +36,18 @@ in {
         enable = true;
         driSupport = true;
         driSupport32Bit = true;
+        extraPackages = with pkgs; [
+          vaapiVdpau 
+          nvidia-vaapi-driver 
+        ]; 
       };
     };
 
     hardware.nvidia.prime = lib.mkIf cfg.laptop.enable {
-      offload.enable = true;
-      offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
+      offload = {
+        enable = true;
+        enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
+      };
     };
 
     services.xserver.videoDrivers = [ "nvidia" ];
