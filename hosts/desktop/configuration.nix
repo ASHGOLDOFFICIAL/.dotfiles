@@ -16,7 +16,10 @@
   };
   
   hardware = {
-    nvidia.open = false;
+    nvidia = {
+      open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };  
     sane = {
       enable = true;
       extraBackends = [ pkgs.epkowa ];
@@ -38,7 +41,9 @@
     };
   };
   
-  networking.hostName = "ferrum";
+  networking = {
+    hostName = "ferrum";
+  };
   
   nix.settings = {
     substituters = [ "https://ezkea.cachix.org" ];
@@ -48,6 +53,10 @@
 
   services = {
     flatpak.enable = true;
+    jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
     printing = {
       enable = true;
       drivers = with pkgs; [ epson_201207w gutenprint ];
@@ -56,11 +65,11 @@
   };
 
   users.users = {
-    ashgoldofficial.extraGroups = [ "scanner" "lp" ];
+    ashgoldofficial.extraGroups = [ "jellyfin" "scanner" "lp" ];
     maria = {
       isNormalUser = true;
       description = "Maria Duzhenko";
-      extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
+      extraGroups = [ "jellyfin" "networkmanager" "wheel" "scanner" "lp" ];
     };
     sergei = {
       isNormalUser = true;
