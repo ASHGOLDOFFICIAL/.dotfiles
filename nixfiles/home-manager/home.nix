@@ -18,11 +18,6 @@
     };
   };
 
-  i18n.glibcLocales = pkgs.glibcLocales.override {
-    allLocales = false;
-    locales = [ "en_US.UTF-8/UTF-8" ];
-  };
-
   home = {
     homeDirectory = "/home/ashgoldofficial";
     stateVersion = "23.05";

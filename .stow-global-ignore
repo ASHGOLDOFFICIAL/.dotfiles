@@ -1,0 +1,5 @@
+\.git
+\.gitignore
+
+\.stow-global-ignore
+\.stow-local-ignore
