@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }@args:
+{ config, lib, pkgs, ... }@args:
 
 let
   cfg = config.custom.gnome;
@@ -126,7 +126,7 @@ in {
         enable-hot-corners = false;
         font-name = "Cantarell 11";
         gtk-theme = "Adwaita";
-        icon-theme = "Adwaita";
+        icon-theme = "kora";
         show-battery-percentage = true;
       };
       "org/gnome/desktop/wm/preferences" = {
@@ -137,9 +137,7 @@ in {
         center-new-windows = true;
         dynamic-workspaces = false;
         edge-tiling = true;
-        experimental-features = [
-          "variable-refresh-rate"
-        ];
+        experimental-features = [ "variable-refresh-rate" ];
       };
       "org/gnome/nautilus/preferences" = {
         click-policy = "single";
@@ -153,7 +151,7 @@ in {
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Alt>z";
-        command = "alacritty";
+        command = "${pkgs.alacritty}";
         name = "Open alacritty";
       };
       "org/gnome/shell" = {

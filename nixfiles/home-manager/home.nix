@@ -1,18 +1,16 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./modules/gnome.nix
-    ./modules/firefox-gnome-theme.nix
-  ];
+  imports = [ ./modules ];
 
   custom = {
     gnome = {
       enable = true;
       epiphany = false;
     };
+    firefox.enable = true;
     firefox-gnome-theme = {
-      enable = true;
+      enable = config.programs.firefox.enable;
       profiles = [ "default" ];
       theme = "maia";
     };
@@ -20,57 +18,44 @@
 
   home = {
     homeDirectory = "/home/ashgoldofficial";
+    keyboard.options = "caps:ctrl_modifier";
+    language = {
+      address = "ru_RU.UTF-8";
+      base = "en_US.UTF-8";
+      collate = "ru_RU.UTF-8";
+      ctype = "en_US.UTF-8";
+      measurement = "ru_RU.UTF-8";
+      messages = "en_US.UTF-8";
+      monetary = "ru_RU.UTF-8";
+      name = "en_US.UTF-8";
+      numeric = "en_US.UTF-8";
+      paper = "ru_RU.UTF-8";
+      telephone = "ru_RU.UTF-8";
+      time = "en_US.UTF-8";
+    };
+    sessionVariables = {
+      ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+      PYTHON_HISTORY = "${config.xdg.stateHome}/python/history";
+      WINEPREFIX = "${config.xdg.dataHome}/wine";
+      XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+    };
     stateVersion = "23.05";
     username = "ashgoldofficial";
   };
 
   programs = {
-    firefox = {
+    home-manager.enable = true;
+
+    lf = {
       enable = true;
-      profiles.default = {
-        id = 0;
-        name = "default";
-        isDefault = true;
-        search = {
-          default = "Google";
-          engines = {
-            "NixOS Options" = {
-              urls = [{
-                template = "https://search.nixos.org/options";
-                params = [
-                  { name = "channel"; value = "unstable"; }
-                  { name = "type"; value = "packages"; }
-                  { name = "query"; value = "{searchTerms}"; }
-                ];
-              }];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@no" ];
-            };
-            "Nix Packages" = {
-              urls = [{
-                template = "https://search.nixos.org/packages";
-                params = [
-                  { name = "channel"; value = "unstable"; }
-                  { name = "type"; value = "packages"; }
-                  { name = "query"; value = "{searchTerms}"; }
-                ];
-              }];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
-            };
-            "Bing".metaData.hidden = true;
-            "DuckDuckGo".metaData.alias = "@d";
-            "Google".metaData.alias = "@g";
-            "Wikipedia".metaData.alias = "@w";
-          };
-          force = true;
-          order = [ "DuckDuckGo" "Google" "NixOS Options" "Nix Packages" "Wikipedia" ];
-          privateDefault = "DuckDuckGo";
-        };
+      settings = {
+        cursorpreviewfmt = "\\033[7;90m";
+        drawbox = true;
+        icons = true;
       };
     };
-
-    home-manager.enable = true;
 
     neovim = {
       enable = true;
@@ -95,10 +80,37 @@
       ];
     };
 
+    zsh = {
+      enable = true;
+      autosuggestion.enable = true;
+      dotDir = ".config/zsh";
+      history = {
+        expireDuplicatesFirst = true;
+        ignoreDups = true;
+        ignoreSpace = true;
+        path = "${config.xdg.dataHome}/zsh/history";
+      };
+      localVariables = {
+        PROMPT = "%F{green}%n%f %F{blue}%~%f %# ";
+      };
+      shellAliases = {
+        diff = "${pkgs.colordiff}";
+        grep = "grep --color=auto";
+        l = "clear";
+        ls = "ls --color=auto";
+        ll = "ls --color=auto -l";
+        svi = "sudoedit --";
+        venv = "source ./venv/bin/activate";
+      };
+      syntaxHighlighting.enable = true;
+    };
   };
 
-  xdg.userDirs = {
+  xdg = {
     enable = true;
-    createDirectories = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
   };
 }

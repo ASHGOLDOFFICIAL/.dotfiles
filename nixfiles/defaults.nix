@@ -8,10 +8,7 @@ in {
   boot = {
     kernelPackages = mkDefault pkgs.linuxPackages_latest;
     loader = {
-      systemd-boot = {
-        enable = mkDefault true;
-        configurationLimit = mkDefault 6;
-      };
+      systemd-boot.enable = mkDefault true;
       efi.canTouchEfiVariables = mkDefault true;
     };
     plymouth.enable = mkDefault false;
@@ -35,7 +32,9 @@ in {
     kdePackages.kalgebra
     keepassxc
     kid3
+    kora-icon-theme
     krita
+    lf
     libreoffice-fresh
     libsForQt5.kdenlive
     libsecret
@@ -58,9 +57,9 @@ in {
     speedtest-rs
     stow
     subtitleedit
+    tealdeer
     telegram-desktop
     thunderbird
-    tldr
     tor-browser
     unzip
     vlc
@@ -86,20 +85,16 @@ in {
   i18n = {
     defaultLocale = mkDefault "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_ADDRESS = mkDefault "en_GB.UTF-8";
-      LC_IDENTIFICATION = mkDefault "en_GB.UTF-8";
-      LC_MEASUREMENT = mkDefault "en_GB.UTF-8";
+      LC_ADDRESS = mkDefault "ru_RU.UTF-8";
+      LC_IDENTIFICATION = mkDefault "ru_RU.UTF-8";
+      LC_MEASUREMENT = mkDefault "ru_RU.UTF-8";
       LC_MONETARY = mkDefault "ru_RU.UTF-8";
-      LC_NAME = mkDefault "en_GB.UTF-8";
-      LC_NUMERIC = mkDefault "en_GB.UTF-8";
-      LC_PAPER = mkDefault "en_GB.UTF-8";
-      LC_TELEPHONE = mkDefault "en_GB.UTF-8";
-      LC_TIME = mkDefault "en_GB.UTF-8";
+      LC_NAME = mkDefault "en_US.UTF-8";
+      LC_NUMERIC = mkDefault "ru_RU.UTF-8";
+      LC_PAPER = mkDefault "ru_RU.UTF-8";
+      LC_TELEPHONE = mkDefault "ru_RU.UTF-8";
+      LC_TIME = mkDefault "en_US.UTF-8";
     };
-    # inputMethod = {
-    #   enabled = "ibus";
-    #   ibus.engines = [ pkgs.ibus-engines.mozc ];
-    # };
   };
   
   networking.networkmanager.enable = mkDefault true;
@@ -167,7 +162,7 @@ in {
       xkb = {
         layout = mkDefault "us,ru";
         variant = mkDefault "";
-        options = mkDefault "terminate:ctrl_alt_bksp,caps:ctrl_modifier";
+        options = mkDefault "terminate:ctrl_alt_bksp";
       };
     };
   };
