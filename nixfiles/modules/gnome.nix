@@ -5,15 +5,15 @@
 let
   cfg = config.custom.gnome;
 in {
-  options.custom.gnome = {
-    enable = lib.mkEnableOption "GNOME desktop environment";
-  };
+  options.custom.gnome.enable = lib.mkEnableOption "GNOME desktop environment";
   
   config = lib.mkIf cfg.enable {
     environment = {
       gnome.excludePackages = (with pkgs; [
         gnome-tour      # Tour
-      ]) ++ (with pkgs.gnome; [
+      ]) ++
+
+      (with pkgs.gnome; [
         epiphany        # Browser
         geary           # Email
         gnome-software  # Software
@@ -29,20 +29,26 @@ in {
         eyedropper
         fractal
         gnome-firmware
+        gnome.dconf-editor
         gnome.gnome-tweaks
         junction
+        kana
         newsflash
         parabolic
-        # wildcard
-      ]) ++ (with pkgs.gnomeExtensions; [
+        wildcard
+      ]) ++
+
+      (with pkgs.gnomeExtensions; [
         alphabetical-app-grid
         bluetooth-battery-meter
         blur-my-shell
         caffeine
-        forge
+        # forge
         gnome-bedtime
         rounded-corners
-      ]);
+      ]) ++
+
+      (lib.optional config.programs.steam.enable pkgs.adwsteamgtk);
     };
 
     programs = {
@@ -54,31 +60,32 @@ in {
           "browser.gnome-search-provider.enabled" = true;
         };
       };
+
       kdeconnect = {
-        enable = true;
+        enable = lib.mkDefault true;
         package = pkgs.gnomeExtensions.gsconnect;
       };
+
       nautilus-open-any-terminal = {
-        enable = true;
-        terminal = "alacritty";
+        enable = lib.mkDefault true;
+        terminal = lib.mkDefault "alacritty";
       };
-      seahorse.enable = config.services.gnome.gnome-keyring.enable;
     };
 
     qt = {
       enable = true;
       platformTheme = "gnome";
-      style = "adwaita-dark";
+      style = "adwaita";
     };
 
     services = {
-      gnome.gnome-keyring.enable = lib.mkForce true;
       switcherooControl.enable = config.hardware.nvidia.prime.offload.enable;
       xserver = {
+        enable = true;
         desktopManager.gnome.enable = true;
         displayManager.gdm = {
           enable = true;
-          wayland = true;
+          wayland = lib.mkDefault true;
         };
       };
     };

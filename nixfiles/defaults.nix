@@ -16,7 +16,6 @@ in {
 
   environment.systemPackages = with pkgs; ([
     # kdePackages.kdenlive
-    (openai-whisper-cpp.override { config = { cudaSupport = true; }; })
     alacritty
     btop
     calibre
@@ -28,7 +27,6 @@ in {
     inkscape
     inxi
     jetbrains.idea-community
-    kana
     kdePackages.kalgebra
     keepassxc
     kid3
@@ -45,10 +43,10 @@ in {
     maxcso
     mc
     mcaselector
-    mkvtoolnix
     neovide
     newsboat
     obs-studio
+    openai-whisper-cpp
     pavucontrol
     python3
     qbittorrent
@@ -61,6 +59,7 @@ in {
     telegram-desktop
     thunderbird
     tor-browser
+    trash-cli
     unzip
     vlc
     wdiff
@@ -77,7 +76,7 @@ in {
     roboto-serif
     roboto-slab
     vistafonts
-    (nerdfonts.override { fonts = ["Hack"]; })
+    (nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
   hardware.pulseaudio.enable = false;
@@ -119,14 +118,14 @@ in {
       enable = true;
       configure = {
         customRC = ''
+          set autoindent
+          set cursorline
+          set expandtab
+          set nowrap
           set number
           set relativenumber
-          set cursorline
-          set nowrap
-          set autoindent
-          set expandtab
-          set tabstop=2
           set shiftwidth=2
+          set tabstop=2
         '';
       };
       defaultEditor = true;
@@ -157,7 +156,6 @@ in {
       pulse.enable = true;
     };
     xserver = {
-      enable = true;
       excludePackages = [ pkgs.xterm ];
       xkb = {
         layout = mkDefault "us,ru";

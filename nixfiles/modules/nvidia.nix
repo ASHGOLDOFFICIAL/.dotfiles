@@ -5,18 +5,7 @@
 let
   cfg = config.custom.nvidia;
 in {
-  options.custom.nvidia = {
-    enable = lib.mkEnableOption "Nvidia specific options";
-    laptop = {
-      enable = lib.mkEnableOption "PRIME offload by default";
-      syncSpecialisation = lib.mkOption {
-        default = null;
-        description = "Name of specialisation on which to enable PRIME Sync";
-        example = "on-the-go";
-        type = with lib.types; nullOr str;
-      };
-    };
-  };
+  options.custom.nvidia.enable = lib.mkEnableOption "Nvidia specific options";
 
   config = lib.mkIf cfg.enable {
     boot.kernelParams = [ "nvidia-drm.fbdev=1" ];
@@ -31,7 +20,9 @@ in {
           enable = lib.mkDefault true;
           finegrained = false;
         };
+        prime.offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
       };
+
       opengl = {
         enable = true;
         driSupport = true;
@@ -43,22 +34,8 @@ in {
       };
     };
 
-    hardware.nvidia.prime = lib.mkIf cfg.laptop.enable {
-      offload = {
-        enable = true;
-        enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
-      };
-    };
+    nixpkgs.config.cudaSupport = lib.mkDefault true;
 
     services.xserver.videoDrivers = [ "nvidia" ];
-
-    specialisation = lib.mkIf (cfg.laptop.syncSpecialisation != null) {
-      ${cfg.laptop.syncSpecialisation}.configuration = {
-        hardware.nvidia.prime = {
-          offload.enable = lib.mkForce false;
-          sync.enable = true;
-        };
-      };
-    };
   };
 }

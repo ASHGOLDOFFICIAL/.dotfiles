@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules ];
+  imports = [ ./modules ./modules/nautilus-open-any-terminal.nix ];
 
   custom = {
     gnome = {

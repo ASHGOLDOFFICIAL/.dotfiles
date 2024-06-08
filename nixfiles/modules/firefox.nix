@@ -34,9 +34,9 @@ in {
       languagePacks = [ "en-GB" "en-US" "ru" ];
       # package = pkgs.firefox-devedition;
       policies = {
-        DisableTelemetry = true;
-        DisablePocket = true;
-        DontCheckDefaultBrowser = true;
+        DisableTelemetry = lib.mkDefault true;
+        DisablePocket = lib.mkDefault true;
+        DontCheckDefaultBrowser = lib.mkDefault true;
       };
       preferences = lib.mkIf cfg.nvidiaHardwareAcceleration {
         "gfx.webrender.all" = true; # Force enable GPU acceleration

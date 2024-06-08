@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.custom.gnome;
@@ -12,37 +12,32 @@ in {
   config = lib.mkIf cfg.enable {
     dconf.settings = let
       inherit (lib.gvariant)
+        mkDictionaryEntry
         mkDouble
         mkEmptyArray
         mkInt32
         mkTuple
         mkVariant
         mkUint32;
+      
       locations = [
         (mkVariant (mkTuple [
           (mkUint32 2)
           (mkVariant (mkTuple [
-            "Coordinated Universal Time (UTC)"
-            "@UTC"
-            false
-            (mkEmptyArray "(dd)")
-            (mkEmptyArray "(dd)")
+            "Coordinated Universal Time (UTC)" "@UTC" false
+            (mkEmptyArray "(dd)") (mkEmptyArray "(dd)")
           ]))
         ]))
         (mkVariant (mkTuple [
           (mkUint32 2)
           (mkVariant (mkTuple [
-            "Moscow"
-            "UUWW"
-            true
-            [(mkTuple [
-              (mkDouble 0.97127572873484425)
-              (mkDouble 0.65042604039431762)
-            ])]
-            [(mkTuple [
-              (mkDouble 0.97305983920281813)
-              (mkDouble 0.65651530216830811)
-            ])]
+            "Moscow" "UUWW" true
+            [(mkTuple (map mkDouble [
+              0.97127572873484425 0.65042604039431762
+            ]))]
+            [(mkTuple (map mkDouble [
+              0.97305983920281813 0.65651530216830811
+            ]))]
           ]))
         ]))
       ];
@@ -61,9 +56,9 @@ in {
       ];
     in {
       "org/gnome/clocks" = {
-        # world-clocks = map
-        #   (location: [(mkDictionaryEntry "location" location)])
-        #   locations;
+        world-clocks = map
+          (location: [(mkDictionaryEntry "location" location)])
+          locations;
       };
       "org/gnome/desktop/app-folders" = {
         folder-children = folders;
@@ -121,7 +116,6 @@ in {
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
         clock-show-weekday = true;
-        color-scheme = "prefer-dark";
         cursor-theme = "Adwaita";
         enable-hot-corners = false;
         font-name = "Cantarell 11";
@@ -151,7 +145,7 @@ in {
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Alt>z";
-        command = "${pkgs.alacritty}";
+        command = "alacritty";
         name = "Open alacritty";
       };
       "org/gnome/shell" = {
@@ -160,6 +154,7 @@ in {
           alphabetical-app-grid.extensionUuid
           bluetooth-battery-meter.extensionUuid
           blur-my-shell.extensionUuid
+          caffeine.extensionUuid
           #forge.extensionUuid
           gnome-bedtime.extensionUuid
           gsconnect.extensionUuid

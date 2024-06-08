@@ -17,15 +17,9 @@
     gaming.enable = true;
     gnome.enable = true;
     iwd.enable = true;
-    nvidia = {
-      enable = true;
-      laptop = {
-        enable = true;
-        syncSpecialisation = "ac";
-      };
-    };
+    nvidia.enable = true;
   };
-  
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -35,13 +29,31 @@
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
+        offload.enable = true;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };
   };
-  
+
   networking.hostName = "aurum";
+  
+  nixpkgs.overlays = [
+    # GNOME 46: triple-buffering-v4-46
+    (final: prev: {
+      gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
+        mutter = gnomePrev.mutter.overrideAttrs (old: {
+          src = pkgs.fetchFromGitLab  {
+            domain = "gitlab.gnome.org";
+            owner = "vanvugt";
+            repo = "mutter";
+            rev = "triple-buffering-v4-46";
+            hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
+          };
+        });
+      });
+    })
+  ];
 
   programs = {
     adb.enable = true;
@@ -56,9 +68,9 @@
       enable = true;
       settings = {
         # Battery settings
-        START_CHARGE_THRESH_BAT0 = 75;
+        START_CHARGE_THRESH_BAT0 = 40;
         STOP_CHARGE_THRESH_BAT0 = 80;
-        START_CHARGE_THRESH_BAT1 = 75;
+        START_CHARGE_THRESH_BAT1 = 40;
         STOP_CHARGE_THRESH_BAT1 = 80;
 
         # Platform
@@ -80,5 +92,11 @@
   virtualisation = {
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
+  };
+
+  specialisation = {
+    ac.configuration = {
+      hardware.nvidia.prime.offload.enable = lib.mkForce false;
+    };
   };
 }
