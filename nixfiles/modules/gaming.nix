@@ -11,7 +11,7 @@ in {
       dwarf-fortress
       gzdoom
       lutris
-      mindustry-wayland
+      # mindustry-wayland
       minetest
       prismlauncher
       superTuxKart
@@ -22,10 +22,13 @@ in {
       gamemode = {
         enable = lib.mkDefault true;
         enableRenice = true;
-        settings.custom = {
-          start = "${pkgs.libnotify}/bin/notify-send -u normal -a 'GameMode' -i 'input-gaming' 'GameMode is on'";
-          end = "${pkgs.libnotify}/bin/notify-send -u normal -a 'GameMode' -i 'input-gaming' 'GameMode is off'";
-        };
+        # settings.custom = let
+        #   notification = flags: message:
+        #   "${pkgs.libnotify}/bin/notify-send ${flags} -a 'GameMode' -i 'input-gaming' ${message}";
+        # in {
+        #   start = notification "-u low" "'GameMode is on'";
+        #   end = notification "-u low" "'GameMode is off'";
+        # };
       };
       gamescope = {
         enable = lib.mkDefault true;

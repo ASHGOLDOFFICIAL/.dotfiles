@@ -33,8 +33,13 @@
       telephone = "ru_RU.UTF-8";
       time = "en_US.UTF-8";
     };
+    # packages = [ (pkgs.callPackage ./packages/skyscraper.nix {}) ];
+    sessionPath = [
+      "${config.home.homeDirectory}/.local/bin"
+    ];
     sessionVariables = {
       ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+      ESDE_APPDATA_DIR = "${config.xdg.configHome}/ES-DE";
       NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
       PYTHON_HISTORY = "${config.xdg.stateHome}/python/history";
       WINEPREFIX = "${config.xdg.dataHome}/wine";
@@ -46,6 +51,16 @@
   };
 
   programs = {
+    git = {
+      enable = true;
+      extraConfig = {
+        core.compression = 0;
+        http.postBuffer = 524288000;
+      };
+      userEmail = "104313094+ASHGOLDOFFICIAL@users.noreply.github.com";
+      userName = "Andrey Shaat";
+    };
+
     home-manager.enable = true;
 
     lf = {

@@ -43,8 +43,9 @@ in {
         bluetooth-battery-meter
         blur-my-shell
         caffeine
-        # forge
+        forge
         gnome-bedtime
+        pano
         rounded-corners
       ]) ++
 

@@ -60,6 +60,7 @@ in {
           (location: [(mkDictionaryEntry "location" location)])
           locations;
       };
+
       "org/gnome/desktop/app-folders" = {
         folder-children = folders;
       };
@@ -86,6 +87,7 @@ in {
       "org/gnome/desktop/app-folders/folders/internet" = {
         name = "Internet";
         categories = [ "Email" "Network" "WebBrowser" ];
+        excluded-apps = [ "steam.desktop" ];
       };
       "org/gnome/desktop/app-folders/folders/office" = {
         name = "Office";
@@ -103,6 +105,7 @@ in {
         name = "System Tools";
         categories = [ "System" "Settings" ];
       };
+
       "org/gnome/desktop/input-sources" = {
         sources = [
           (mkTuple [ "xkb" "us" ])
@@ -113,6 +116,7 @@ in {
           "caps:ctrl_modifier"
         ];
       };
+
       "org/gnome/desktop/interface" = {
         clock-format = "12h";
         clock-show-weekday = true;
@@ -136,6 +140,7 @@ in {
       "org/gnome/nautilus/preferences" = {
         click-policy = "single";
       };
+
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
@@ -148,6 +153,7 @@ in {
         command = "alacritty";
         name = "Open alacritty";
       };
+
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
@@ -155,9 +161,9 @@ in {
           bluetooth-battery-meter.extensionUuid
           blur-my-shell.extensionUuid
           caffeine.extensionUuid
-          #forge.extensionUuid
           gnome-bedtime.extensionUuid
           gsconnect.extensionUuid
+          pano.extensionUuid
           rounded-corners.extensionUuid
         ];
         # TODO: check if apps are installed
@@ -168,14 +174,17 @@ in {
           "org.telegram.desktop.desktop"
           "org.gnome.Nautilus.desktop"
           "org.keepassxc.KeePassXC.desktop"
+          "io.gitlab.news_flash.NewsFlash.desktop"
           "vlc.desktop"
           "subtitleedit.desktop"
           "org.es_de.frontend.desktop"
         ];
       };
+      
       "org/gnome/shell/app-switcher" = {
         current-workspace-only = true;
       };
+
       "org/gnome/shell/extensions/alphabetical-app-grid" = {
         folder-order-position = "start";
       };

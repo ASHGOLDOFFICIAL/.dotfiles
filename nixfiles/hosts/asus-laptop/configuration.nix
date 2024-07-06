@@ -11,7 +11,11 @@
       enable = true;
       fifthGeneration = true;
       sixthGeneration = true;
-      seventhGeneration = true;
+
+      retroarchExtraConfig = {
+        video_driver = "vulkan";
+        video_refresh_rate = "144.000000";
+      };
     };
     firefox.enable = true;
     gaming.enable = true;

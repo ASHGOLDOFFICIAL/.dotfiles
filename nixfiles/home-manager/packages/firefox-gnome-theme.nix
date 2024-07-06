@@ -5,13 +5,13 @@
 
 stdenv.mkDerivation (finalAttr: {
   pname = "firefox-gnome-theme";
-  version = "126";
+  version = "127";
 
   src = fetchFromGitHub {
     owner = "rafaelmardojai";
     repo = "firefox-gnome-theme";
-    rev = "v${finalAttr.version}";
-    hash = "sha256-jVbj2JD5GRkP8s3vKBtd9PDpftf3kjLR0ZA/ND/c2+Q=";
+    rev = "refs/tags/v${finalAttr.version}";
+    hash = "sha256-ihOVmsno400zgdgSdRRxKRzmKiydH0Vux7LtSDpCyUI=";
   };
 
   outputs = [ "out" "doc" ];
@@ -38,7 +38,7 @@ stdenv.mkDerivation (finalAttr: {
     homepage = "https://github.com/rafaelmardojai/firefox-gnome-theme";
     downloadPage = "https://github.com/rafaelmardojai/firefox-gnome-theme/releases";
     license = lib.licenses.unlicense;
-    maintainers = with lib.maintainers; [];
+    maintainers = with lib.maintainers; [ ashgoldofficial ];
     platforms = lib.platforms.all;
   };
 })

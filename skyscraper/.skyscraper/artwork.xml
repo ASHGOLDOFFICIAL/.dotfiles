@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is the default artwork.xml provided by Skyscraper. More examples can be found in '~/.skyscraper'. Be sure to check the full artwork documentation here: https://gemba.github.io/skyscraper/ARTWORK -->
+<artwork>
+  <output type="cover" />
+  <output type="marquee" resource="wheel" />
+</artwork>

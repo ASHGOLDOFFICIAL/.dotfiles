@@ -15,7 +15,8 @@ in {
   };
 
   environment.systemPackages = with pkgs; ([
-    # kdePackages.kdenlive
+    (pkgs.callPackage ./packages/skyscraper.nix {})
+    # (pkgs.callPackage ./packages/gb-studio.nix {})
     alacritty
     btop
     calibre
@@ -24,17 +25,18 @@ in {
     ffmpeg
     gimp
     godot_4
+    imagemagick
     inkscape
     inxi
     jetbrains.idea-community
     kdePackages.kalgebra
+    kdePackages.kdenlive
     keepassxc
     kid3
     kora-icon-theme
     krita
     lf
     libreoffice-fresh
-    libsForQt5.kdenlive
     libsecret
     lm_sensors
     lollypop
@@ -47,6 +49,7 @@ in {
     newsboat
     obs-studio
     openai-whisper-cpp
+    p7zip
     pavucontrol
     python3
     qbittorrent
