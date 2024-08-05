@@ -40,6 +40,7 @@ in {
         cores = with libretro; ([
           beetle-pce       # pcenginecd
           beetle-pce-fast  # pcenginecd
+          beetle-wswan     # wonderswan
           bsnes            # snes
           fbneo            # arcade
           gambatte         # gb, gbc
@@ -54,8 +55,10 @@ in {
 
         lib.optionals cfg.pc [
           bluemsx          # msx
-          dosbox           # MS-DOS
-          dosbox-pure      # MS-DOS
+          dosbox           # dos
+          dosbox-pure      # dos
+          fmsx             # msx
+          np2kai           # pc98
         ] ++
 
         lib.optionals cfg.fifthGeneration [
@@ -90,6 +93,10 @@ in {
           xmb_menu_color_theme = "1";
         } // cfg.retroarchExtraConfig;
       })
+    ] ++
+
+    lib.optionals cfg.pc [
+      (pkgs.callPackage ../packages/quasi88.nix {})
     ] ++
 
     lib.optionals cfg.fifthGeneration [

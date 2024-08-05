@@ -15,7 +15,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "es-de";
-  version = "3.0.2";
+  version = "3.0.3";
 
   src = fetchFromGitLab {
     owner = "es-de";
@@ -55,11 +55,6 @@ stdenv.mkDerivation (finalAttrs: {
     # By default the application updater will be built
     # which checks for new releases on startup, this disables it.
     "-DAPPLICATION_UPDATER=off"
-    
-    # Sets the installation directory, also modifies code inside ES-DE
-    # used to locate the required program resources. Though I builds
-    # correctly without it.
-    # "-DCMAKE_INSTALL_PREFIX=$out"
   ];
 
   meta = {

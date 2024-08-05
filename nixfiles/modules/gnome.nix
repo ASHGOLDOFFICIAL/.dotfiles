@@ -10,13 +10,10 @@ in {
   config = lib.mkIf cfg.enable {
     environment = {
       gnome.excludePackages = (with pkgs; [
-        gnome-tour      # Tour
-      ]) ++
-
-      (with pkgs.gnome; [
         epiphany        # Browser
         geary           # Email
-        gnome-software  # Software
+        gnome-tour      # Tour
+        gnome.gnome-software  # Software
         totem           # Videos
         yelp            # Help
       ]);
@@ -24,13 +21,13 @@ in {
       systemPackages = (with pkgs; [
         amberol
         blanket
+        dconf-editor
         deja-dup
         denaro
         eyedropper
         fractal
         gnome-firmware
-        gnome.dconf-editor
-        gnome.gnome-tweaks
+        gnome-tweaks
         junction
         kana
         newsflash

@@ -39,7 +39,7 @@ in {
     libreoffice-fresh
     libsecret
     lm_sensors
-    lollypop
+    # lollypop
     lshw
     mame-tools
     maxcso
@@ -168,7 +168,6 @@ in {
     };
   };
   
-  sound.enable = true;
   system.stateVersion = "24.05";
   time.timeZone = "Asia/Yekaterinburg";
   
