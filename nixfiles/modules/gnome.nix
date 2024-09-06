@@ -13,23 +13,21 @@ in {
         epiphany        # Browser
         geary           # Email
         gnome-tour      # Tour
-        gnome.gnome-software  # Software
+        gnome-software  # Software
         totem           # Videos
         yelp            # Help
       ]);
 
       systemPackages = (with pkgs; [
+        alpaca
         amberol
         blanket
         dconf-editor
-        deja-dup
         denaro
         eyedropper
         fractal
         gnome-firmware
         gnome-tweaks
-        junction
-        kana
         newsflash
         parabolic
         wildcard
@@ -42,6 +40,7 @@ in {
         caffeine
         forge
         gnome-bedtime
+        net-speed-simplified
         pano
         rounded-corners
       ]) ++

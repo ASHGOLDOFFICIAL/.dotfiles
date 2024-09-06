@@ -163,6 +163,7 @@ in {
           caffeine.extensionUuid
           gnome-bedtime.extensionUuid
           gsconnect.extensionUuid
+          net-speed-simplified.extensionUuid
           pano.extensionUuid
           rounded-corners.extensionUuid
         ];
@@ -204,6 +205,14 @@ in {
       };
       "org/gnome/shell/extensions/lennart-k/rounded_corners" = {
         corner-radius = mkInt32 16;
+      };
+      "org/gnome/shell/extensions/netspeedsimplified" = {
+        iconstoright = true;
+        lockmouseactions = true;
+        mode = 3;
+        systemcolr = true;
+        togglebool = false;
+        wpos = 1;
       };
       "org/gnome/shell/world-clocks" = {
         world-clocks = locations;

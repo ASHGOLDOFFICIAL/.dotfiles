@@ -14,61 +14,79 @@ in {
     plymouth.enable = mkDefault false;
   };
 
-  environment.systemPackages = with pkgs; ([
-    (pkgs.callPackage ./packages/skyscraper.nix {})
-    # (pkgs.callPackage ./packages/gb-studio.nix {})
-    alacritty
-    btop
-    calibre
-    colordiff
-    fastfetch
-    ffmpeg
-    gimp
-    godot_4
-    imagemagick
-    inkscape
-    inxi
-    jetbrains.idea-community
-    kdePackages.kalgebra
-    kdePackages.kdenlive
-    keepassxc
-    kid3
-    kora-icon-theme
-    krita
-    lf
-    libreoffice-fresh
-    libsecret
-    lm_sensors
-    # lollypop
-    lshw
-    mame-tools
-    maxcso
-    mc
-    mcaselector
-    neovide
-    newsboat
-    obs-studio
-    openai-whisper-cpp
-    p7zip
-    pavucontrol
-    python3
-    qbittorrent
-    scrcpy
-    sigil
-    speedtest-rs
-    stow
-    subtitleedit
-    tealdeer
-    telegram-desktop
-    thunderbird
-    tor-browser
-    trash-cli
-    unzip
-    vlc
-    wdiff
-    webcord
-    wl-clipboard
-  ]);
+  environment = {
+    systemPackages = with pkgs; ([
+      (pkgs.callPackage ./packages/skyscraper.nix {})
+      alacritty
+      bottles
+      btop
+      calibre
+      colordiff
+      fastfetch
+      ffmpeg
+      gimp
+      godot_4
+      imagemagick
+      inkscape
+      inxi
+      jetbrains.idea-community
+      kdePackages.kalgebra
+      kdePackages.kdenlive
+      keepassxc
+      kid3
+      kora-icon-theme
+      krita
+      lf
+      libreoffice-fresh
+      libsecret
+      lm_sensors
+      lollypop
+      lshw
+      mame-tools
+      maxcso
+      mc
+      mcaselector
+      mpv
+      neovide
+      newsboat
+      obs-studio
+      openai-whisper-cpp
+      p7zip
+      pavucontrol
+      python3
+      qbittorrent
+      scrcpy
+      sigil
+      speedtest-rs
+      stow
+      subtitleedit
+      tealdeer
+      telegram-desktop
+      thunderbird
+      tor-browser
+      trash-cli
+      unzip
+      vlc
+      wdiff
+      webcord
+      wl-clipboard
+      xdelta
+    ]);
+
+    variables = {
+      MODE = "nfqws";
+      NFQWS_OPT_DESYNC = "--dpi-desync=split2";
+      NFQWS_OPT_DESYNC_HTTP = "";
+      NFQWS_OPT_DESYNC_HTTPS = "";
+      NFQWS_OPT_DESYNC_HTTP6 = "";
+      NFQWS_OPT_DESYNC_HTTPS6 = "";
+      NFQWS_OPT_DESYNC_QUIC = "--dpi-desync=fake --dpi-desync-repeats=6";
+      MODE_HTTP = "0";
+      MODE_HTTPS = "1";
+      MODE_QUIC = "1";
+      MODE_FILTER = "hostlist";
+    };
+  };
 
   fonts.packages = with pkgs; [
     corefonts
@@ -113,7 +131,9 @@ in {
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
 
   programs = {
     git.enable = true;
@@ -133,10 +153,7 @@ in {
       };
       defaultEditor = true;
     };
-    nh = {
-      enable = true;
-      flake = ./.;
-    };
+    nh.enable = true;
     ssh.startAgent = true;
     tmux.enable = true;
     zsh = {

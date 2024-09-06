@@ -33,7 +33,6 @@ in {
     environment.systemPackages = with pkgs; ([
       (pkgs.callPackage ../packages/es-de.nix {})
       
-      xdelta
       mame 
       
       (retroarch.override {
@@ -43,6 +42,7 @@ in {
           beetle-wswan     # wonderswan
           bsnes            # snes
           fbneo            # arcade
+          fceumm           # nes
           gambatte         # gb, gbc
           genesis-plus-gx  # genesis
           mesen            # nes
@@ -59,6 +59,7 @@ in {
           dosbox-pure      # dos
           fmsx             # msx
           np2kai           # pc98
+          puae             # amiga
         ] ++
 
         lib.optionals cfg.fifthGeneration [
@@ -79,24 +80,34 @@ in {
         ]);
         
         settings = {
+          # Directories
           assets_directory = "${pkgs.retroarch-assets}/share/retroarch/assets";
-          gamemode_enable = if config.programs.gamemode.enable then "true" else "false";
           joypad_autoconfig_dir = "${pkgs.retroarch-joypad-autoconfig}/share/libretro/autoconfig";
           libretro_info_path = "${pkgs.libretro-core-info}/share/retroarch/cores";
+          
+          # General
+          content_runtime_log_aggregate = "true";
+          gamemode_enable = if config.programs.gamemode.enable then "true" else "false";
+          input_max_users = "2";
+          quit_on_close_content = "2"; # CLI
+          video_fullscreen = "true";
+          
+          # Menu & Theme
           menu_driver = "xmb";
           menu_shader_pipeline = "2";
-          menu_swap_ok_cancel_buttons = "false"; # Japanese
+          menu_swap_ok_cancel_buttons = "true"; # Non-Japanese
           ozone_menu_color_theme = "12";
-          quit_on_close_content = "2"; # CLI
-          use_last_start_directory = "true";
-          video_fullscreen = "true";
           xmb_menu_color_theme = "1";
+
+          # RetroAchievements
+          cheevos_enable = "true";
+          cheevos_hardcore_mode_enable = "true";
         } // cfg.retroarchExtraConfig;
       })
     ] ++
 
     lib.optionals cfg.pc [
-      (pkgs.callPackage ../packages/quasi88.nix {})
+      # (pkgs.callPackage ../packages/quasi88.nix {})
     ] ++
 
     lib.optionals cfg.fifthGeneration [

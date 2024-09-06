@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -16,7 +16,7 @@
   };
   
   hardware = {
-    nvidia.open = false;
+    nvidia.open = lib.mkForce false;
     sane = {
       enable = true;
       extraBackends = [ pkgs.epkowa ];
