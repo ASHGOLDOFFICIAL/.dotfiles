@@ -6,9 +6,12 @@
 , ffmpeg
 , freeimage
 , freetype
+, harfbuzz
+, icu
 , libgit2
 , pkg-config
 , poppler
+, gettext
 , pugixml
 , stdenv
 }:
@@ -21,7 +24,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "es-de";
     repo = "emulationstation-de";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-RGlXFybbXYx66Hpjp2N3ovK4T5VyS4w0DWRGNvbwugs=";
+    hash = "sha256-w/Kz9Hox5/Ed8n/e2qUF3tfm+a0YNTK1hC1hDp3Xa9w=";
   };
 
   outputs = [ "out" "man" ];
@@ -36,17 +39,21 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     cmake
     pkg-config
+    gettext
   ];
 
   buildInputs = [
+    SDL2
     alsa-lib
     ffmpeg
     freeimage
     freetype
+    gettext
+    harfbuzz
+    icu
     libgit2
     poppler
     pugixml
-    SDL2
   ];
 
   cmakeFlags = [
