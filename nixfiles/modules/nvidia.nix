@@ -14,8 +14,7 @@ in {
       nvidia = {
         modesetting.enable = true;
         nvidiaSettings = true;
-        open = lib.mkDefault true;
-        package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.production;
+        open = true;
         powerManagement = {
           enable = lib.mkDefault true;
           finegrained = false;
@@ -23,9 +22,9 @@ in {
         prime.offload.enableOffloadCmd = config.hardware.nvidia.prime.offload.enable;
       };
 
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
         extraPackages = with pkgs; [
           vaapiVdpau 
           nvidia-vaapi-driver 
@@ -33,6 +32,14 @@ in {
       };
     };
 
+    nix.settings = {
+      substituters = [
+        "https://cuda-maintainers.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      ];
+    };
     nixpkgs.config.cudaSupport = lib.mkDefault true;
 
     services.xserver.videoDrivers = [ "nvidia" ];
