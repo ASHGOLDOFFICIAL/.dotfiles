@@ -2380,6 +2380,21 @@
             "*.smd"
         ]
     },
+    "megadrivejp": {
+        "aliases": [
+            "genesis",
+            "mega drive",
+            "sega mega drive",
+            "sega mega drive/genesis"
+        ],
+        "formats": [
+            "*.bin",
+            "*.gen",
+            "*.md",
+            "*.sg",
+            "*.smd"
+        ]
+    },
     "sfc": {
         "aliases": [
             "nintendo power",
@@ -2399,6 +2414,49 @@
             "*.sfc",
             "*.smc",
             "*.swc"
+        ]
+    },
+    "tg-cd": {
+        "aliases": [
+            "pc engine",
+            "pc engine cd-rom",
+            "pc engine supergrafx",
+            "turbografx 16",
+            "turbografx cd",
+            "turbografx-16",
+            "turbografx-16/pc engine",
+            "turbografx-16/pc engine cd"
+        ],
+        "formats": [
+            "*.ccd",
+            "*.chd",
+            "*.cue",
+            "*.pce"
+        ],
+        "scrapers": [
+            "openretro",
+            "screenscraper"
+        ]
+    },
+    "tg16": {
+        "aliases": [
+            "pc engine",
+            "pc engine cd-rom",
+            "pc engine supergrafx",
+            "turbografx 16",
+            "turbografx cd",
+            "turbografx-16",
+            "turbografx-16/pc engine",
+            "turbografx-16/pc engine cd"
+        ],
+        "formats": [
+            "*.chd",
+            "*.cue",
+            "*.pce"
+        ],
+        "scrapers": [
+            "openretro",
+            "screenscraper"
         ]
     }
 }
