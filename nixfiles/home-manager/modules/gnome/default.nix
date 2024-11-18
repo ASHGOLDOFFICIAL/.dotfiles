@@ -53,6 +53,7 @@ in {
         "programming"
         "sound---video"
         "system-tools"
+        "waydroid"
       ];
     in {
       "org/gnome/clocks" = {
@@ -105,6 +106,10 @@ in {
         name = "System Tools";
         categories = [ "System" "Settings" ];
       };
+      "org/gnome/desktop/app-folders/folders/waydroid" = {
+        name = "WayDroid";
+        categories = [ "X-WayDroid-App" ];
+      };
 
       "org/gnome/desktop/input-sources" = {
         sources = [
@@ -118,6 +123,7 @@ in {
       };
 
       "org/gnome/desktop/interface" = {
+        accent-color = "yellow";
         clock-format = "12h";
         clock-show-weekday = true;
         cursor-theme = "Adwaita";
@@ -166,6 +172,7 @@ in {
           net-speed-simplified.extensionUuid
           pano.extensionUuid
           rounded-corners.extensionUuid
+          tiling-shell.extensionUuid
         ];
         # TODO: check if apps are installed
         favorite-apps = [
