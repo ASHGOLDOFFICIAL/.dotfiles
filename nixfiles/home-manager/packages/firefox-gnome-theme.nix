@@ -1,22 +1,20 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-}:
+{ lib, stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation (finalAttr: {
   pname = "firefox-gnome-theme";
-  version = "127";
+  version = "132";
 
   src = fetchFromGitHub {
     owner = "rafaelmardojai";
     repo = "firefox-gnome-theme";
     rev = "refs/tags/v${finalAttr.version}";
-    hash = "sha256-ihOVmsno400zgdgSdRRxKRzmKiydH0Vux7LtSDpCyUI=";
+    hash = "sha256-nf+0/UR5TZArp3Dn3NS3nB+ZGqecTOTOZRCFM3a1veM=";
   };
 
   outputs = [ "out" "doc" ];
 
   strictDeps = true;
+  dontBuild = true;
 
   # Only copy necessary files
   installPhase = ''
@@ -36,7 +34,8 @@ stdenv.mkDerivation (finalAttr: {
       This theme follows latest GNOME Adwaita style.
     '';
     homepage = "https://github.com/rafaelmardojai/firefox-gnome-theme";
-    downloadPage = "https://github.com/rafaelmardojai/firefox-gnome-theme/releases";
+    downloadPage =
+      "https://github.com/rafaelmardojai/firefox-gnome-theme/releases";
     license = lib.licenses.unlicense;
     maintainers = with lib.maintainers; [ ashgoldofficial ];
     platforms = lib.platforms.all;
