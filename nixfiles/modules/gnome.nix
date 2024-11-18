@@ -11,25 +11,23 @@ in {
     environment = {
       gnome.excludePackages = (with pkgs; [
         epiphany        # Browser
+        # evince          # Documents
         geary           # Email
-        gnome-tour      # Tour
         gnome-software  # Software
+        gnome-tour      # Tour
         totem           # Videos
         yelp            # Help
       ]);
 
       systemPackages = (with pkgs; [
-        alpaca
         amberol
         blanket
         dconf-editor
         denaro
-        eyedropper
-        fractal
         gnome-firmware
         gnome-tweaks
         newsflash
-        parabolic
+        papers
         wildcard
       ]) ++
 
@@ -38,11 +36,11 @@ in {
         bluetooth-battery-meter
         blur-my-shell
         caffeine
-        forge
         gnome-bedtime
         net-speed-simplified
         pano
         rounded-corners
+        tiling-shell
       ]) ++
 
       (lib.optional config.programs.steam.enable pkgs.adwsteamgtk);
@@ -72,7 +70,7 @@ in {
     qt = {
       enable = true;
       platformTheme = "gnome";
-      style = "adwaita";
+      style = "adwaita-dark";
     };
 
     services = {

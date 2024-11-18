@@ -18,7 +18,6 @@ in {
     systemPackages = with pkgs; ([
       (pkgs.callPackage ./packages/skyscraper.nix {})
       alacritty
-      bottles
       btop
       calibre
       colordiff
@@ -28,8 +27,8 @@ in {
       godot_4
       imagemagick
       inkscape
-      inxi
       jetbrains.idea-community
+      jetbrains.pycharm-community
       kdePackages.kalgebra
       kdePackages.kdenlive
       keepassxc
@@ -47,12 +46,15 @@ in {
       mc
       mcaselector
       mpv
+      nekoray
       neovide
       newsboat
+      temurin-jre-bin
       obs-studio
       openai-whisper-cpp
       p7zip
       pavucontrol
+      putty
       python3
       qbittorrent
       scrcpy
@@ -72,20 +74,6 @@ in {
       wl-clipboard
       xdelta
     ]);
-
-    variables = {
-      MODE = "nfqws";
-      NFQWS_OPT_DESYNC = "--dpi-desync=split2";
-      NFQWS_OPT_DESYNC_HTTP = "";
-      NFQWS_OPT_DESYNC_HTTPS = "";
-      NFQWS_OPT_DESYNC_HTTP6 = "";
-      NFQWS_OPT_DESYNC_HTTPS6 = "";
-      NFQWS_OPT_DESYNC_QUIC = "--dpi-desync=fake --dpi-desync-repeats=6";
-      MODE_HTTP = "0";
-      MODE_HTTPS = "1";
-      MODE_QUIC = "1";
-      MODE_FILTER = "hostlist";
-    };
   };
 
   fonts.packages = with pkgs; [
@@ -123,7 +111,7 @@ in {
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than 7d";
     };
     settings = {
       auto-optimise-store = true;
@@ -156,6 +144,10 @@ in {
     nh.enable = true;
     ssh.startAgent = true;
     tmux.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
     zsh = {
       enable = true;
       autosuggestions.enable = true;
@@ -177,6 +169,7 @@ in {
     };
     xserver = {
       excludePackages = [ pkgs.xterm ];
+      wacom.enable = true;
       xkb = {
         layout = mkDefault "us,ru";
         variant = mkDefault "";
@@ -193,7 +186,7 @@ in {
     users.ashgoldofficial = {
       isNormalUser = true;
       description = "Andrey Shaat";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "wireshark" ];
     };
   };
 }

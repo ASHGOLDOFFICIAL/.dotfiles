@@ -32,7 +32,7 @@
     };
     cpu.intel.updateMicrocode = true;
     nvidia = {
-      # package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
         offload.enable = true;
         intelBusId = "PCI:0:2:0";
@@ -78,13 +78,9 @@
   users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
 
   virtualisation = {
+    docker.enable = true;
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
-  };
-
-  specialisation = {
-    ac.configuration = {
-      hardware.nvidia.prime.offload.enable = lib.mkForce false;
-    };
+    waydroid.enable = true;
   };
 }
