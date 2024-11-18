@@ -1,6 +1,7 @@
+[general]
 import = ["/home/ashgoldofficial/.config/alacritty/themes/tokyonight_moon.toml"]
 
-[shell]
+[terminal.shell]
 program = "tmux"
 
 [window]
