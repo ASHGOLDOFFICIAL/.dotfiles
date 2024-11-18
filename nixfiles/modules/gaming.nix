@@ -11,7 +11,7 @@ in {
       dwarf-fortress
       gzdoom
       lutris
-      # mindustry-wayland
+      mindustry-wayland
       minetest
       prismlauncher
       superTuxKart
@@ -38,6 +38,7 @@ in {
         enable = lib.mkDefault true;
         extraCompatPackages = with pkgs; [ proton-ge-bin ];
         gamescopeSession.enable = true;
+        protontricks.enable = true;
       };
     };
   };
