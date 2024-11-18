@@ -44,7 +44,7 @@
       PYTHON_HISTORY = "${config.xdg.stateHome}/python/history";
       WINEPREFIX = "${config.xdg.dataHome}/wine";
       XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
-      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+      # _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
     };
     stateVersion = "23.05";
     username = "ashgoldofficial";
