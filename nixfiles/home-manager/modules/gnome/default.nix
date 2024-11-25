@@ -140,7 +140,7 @@ in {
       "org/gnome/mutter" = {
         center-new-windows = true;
         dynamic-workspaces = false;
-        edge-tiling = true;
+        edge-tiling = false;
         experimental-features = [ "variable-refresh-rate" ];
       };
       "org/gnome/nautilus/preferences" = {
@@ -205,11 +205,6 @@ in {
       "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
         blur = false;
       };
-      "org/gnome/shell/extensions/forge" = {
-        move-pointer-focus-enabled = false;
-        quick-settings-enabled = false;
-        window-gap-size-increment = mkUint32 0;
-      };
       "org/gnome/shell/extensions/lennart-k/rounded_corners" = {
         corner-radius = mkInt32 16;
       };
@@ -220,6 +215,10 @@ in {
         systemcolr = true;
         togglebool = false;
         wpos = 1;
+      };
+      "org/gnome/shell/extensions/tilingshell" = {
+        outer-gaps = mkUint32 0;
+        inner-gaps = mkUint32 0;
       };
       "org/gnome/shell/world-clocks" = {
         world-clocks = locations;
