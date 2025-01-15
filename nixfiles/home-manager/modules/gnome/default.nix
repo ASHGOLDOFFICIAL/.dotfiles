@@ -4,12 +4,15 @@ let
   cfg = config.custom.gnome;
 in {
   imports = [
+    ./extensions
     ./epiphany.nix
   ];
 
   options.custom.gnome.enable = lib.mkEnableOption "GNOME config options";
 
   config = lib.mkIf cfg.enable {
+    custom.gnome.extensions.enable = lib.mkDefault true;
+
     dconf.settings = let
       inherit (lib.gvariant)
         mkDictionaryEntry
@@ -217,8 +220,32 @@ in {
         wpos = 1;
       };
       "org/gnome/shell/extensions/tilingshell" = {
+        enable-autotiling = true;
         outer-gaps = mkUint32 0;
         inner-gaps = mkUint32 0;
+        layouts-json = builtins.toJSON [
+          {
+            "id" = "Layout 1";
+            "tiles" = [
+              {"x" = 0; "y" = 0; "width" = 0.5; "height" = 1; "groups" = [1];}
+              {"x" = 0.5; "y" = 0; "width" = 0.5; "height" = 1; "groups" = [1];}
+            ];
+          }
+          {
+            "id" = "Layout 2";
+            "tiles" = [
+              {"x" = 0; "y" = 0; "width" = 0.33; "height" = 1; "groups" = [1];}
+              {"x" = 0.33; "y" = 0; "width" = 0.67; "height" = 1; "groups" = [1];}
+            ];
+          }
+          {
+            "id" = "Layout 3";
+            "tiles" = [
+              {"x" = 0; "y" = 0; "width" = 0.67; "height" = 1; "groups" = [1];}
+              {"x" = 0.67; "y" = 0; "width" = 0.33; "height" = 1; "groups" = [1];}
+            ];
+          }
+        ];
       };
       "org/gnome/shell/world-clocks" = {
         world-clocks = locations;
