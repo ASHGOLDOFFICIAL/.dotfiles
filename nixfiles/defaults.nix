@@ -28,7 +28,11 @@ in {
       godot_4
       imagemagick
       inkscape
-      jetbrains.idea-community
+      (jetbrains.plugins.addPlugins jetbrains.idea-community [
+        "nixidea"
+        "scala"
+        "github-copilot"
+      ])
       jetbrains.pycharm-community
       kdePackages.kdenlive
       keepassxc
@@ -83,8 +87,6 @@ in {
     roboto-slab
     vistafonts
   ];
-
-  hardware.pulseaudio.enable = false;
   
   i18n = {
     defaultLocale = mkDefault "en_US.UTF-8";

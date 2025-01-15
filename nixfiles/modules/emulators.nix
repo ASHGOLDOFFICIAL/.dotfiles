@@ -103,10 +103,6 @@ in {
       })
     ] ++
 
-    lib.optionals cfg.pc [
-      # (pkgs.callPackage ../packages/quasi88.nix {})
-    ] ++
-
     lib.optionals cfg.fifthGeneration [
       duckstation  # psx
       melonDS      # nds
