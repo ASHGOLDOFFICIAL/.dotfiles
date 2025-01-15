@@ -10,7 +10,8 @@
     };
     firefox.enable = true;
     firefox-gnome-theme = {
-      enable = config.programs.firefox.enable;
+      # enable = config.programs.firefox.enable;
+      enable = false;
       profiles = [ "default" ];
       theme = "maia";
     };

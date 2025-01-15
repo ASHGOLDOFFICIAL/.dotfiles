@@ -1,14 +1,14 @@
 { lib, stdenv, fetchFromGitHub }:
 
-stdenv.mkDerivation (finalAttr: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "firefox-gnome-theme";
   version = "132";
 
   src = fetchFromGitHub {
     owner = "rafaelmardojai";
     repo = "firefox-gnome-theme";
-    rev = "refs/tags/v${finalAttr.version}";
-    hash = "sha256-nf+0/UR5TZArp3Dn3NS3nB+ZGqecTOTOZRCFM3a1veM=";
+    rev = "refs/tags/v${finalAttrs.version}";
+    hash = "sha256-lf9MQs8+NUvQd8b5t+7c4kLqUQixGO9WwWcLa1XYuiQ=";
   };
 
   outputs = [ "out" "doc" ];

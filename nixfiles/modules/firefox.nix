@@ -37,6 +37,11 @@ in {
         DisableTelemetry = lib.mkDefault true;
         DisablePocket = lib.mkDefault true;
         DontCheckDefaultBrowser = lib.mkDefault true;
+        NoDefaultBookmarks = lib.mkDefault true;
+        PictureInPicture = {
+          Enabled = lib.mkDefault true;
+          Locked = lib.mkDefault true;
+        };
       };
       preferences = lib.mkIf cfg.nvidiaHardwareAcceleration {
         "gfx.webrender.all" = true; # Force enable GPU acceleration
