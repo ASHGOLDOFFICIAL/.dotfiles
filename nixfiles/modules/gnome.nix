@@ -38,7 +38,7 @@ in {
         caffeine
         gnome-bedtime
         net-speed-simplified
-        pano
+        # pano
         rounded-corners
         tiling-shell
       ]) ++

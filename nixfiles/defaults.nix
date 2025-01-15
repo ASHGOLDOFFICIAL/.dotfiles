@@ -24,20 +24,18 @@ in {
       fastfetch
       ffmpeg
       gimp
+      gnumake
       godot_4
       imagemagick
       inkscape
       jetbrains.idea-community
       jetbrains.pycharm-community
-      kdePackages.kalgebra
       kdePackages.kdenlive
       keepassxc
       kid3
       kora-icon-theme
       krita
       lf
-      libreoffice-fresh
-      libsecret
       lm_sensors
       lollypop
       lshw
@@ -49,7 +47,6 @@ in {
       nekoray
       neovide
       newsboat
-      temurin-jre-bin
       obs-studio
       openai-whisper-cpp
       p7zip
@@ -70,7 +67,6 @@ in {
       unzip
       vlc
       wdiff
-      webcord
       wl-clipboard
       xdelta
     ]);
@@ -78,6 +74,7 @@ in {
 
   fonts.packages = with pkgs; [
     corefonts
+    nerd-fonts.hack
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     roboto
@@ -85,7 +82,6 @@ in {
     roboto-serif
     roboto-slab
     vistafonts
-    (nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
   hardware.pulseaudio.enable = false;

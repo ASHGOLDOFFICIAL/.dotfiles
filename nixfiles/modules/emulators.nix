@@ -25,23 +25,20 @@ in {
   config = lib.mkIf cfg.enable {
     nixpkgs.config = {
       permittedInsecurePackages = [
-        # es-de
+        # emulationstation-de
         "freeimage-unstable-2021-11-01"
       ];
     };
 
     environment.systemPackages = with pkgs; ([
-      (pkgs.callPackage ../packages/es-de.nix {})
-      
-      mame 
-      
-      (retroarch.override {
-        cores = with libretro; ([
+      emulationstation-de
+      mame
+      (wrapRetroArch {
+        cores = with libretro; [
           beetle-pce       # pcenginecd
           beetle-pce-fast  # pcenginecd
           beetle-wswan     # wonderswan
           bsnes            # snes
-          fbneo            # arcade
           fceumm           # nes
           gambatte         # gb, gbc
           genesis-plus-gx  # genesis
@@ -77,21 +74,21 @@ in {
 
         lib.optionals cfg.seventhGeneration [
           dolphin          # wii
-        ]);
-        
+        ];
+
         settings = {
           # Directories
           assets_directory = "${pkgs.retroarch-assets}/share/retroarch/assets";
           joypad_autoconfig_dir = "${pkgs.retroarch-joypad-autoconfig}/share/libretro/autoconfig";
           libretro_info_path = "${pkgs.libretro-core-info}/share/retroarch/cores";
-          
+
           # General
           content_runtime_log_aggregate = "true";
           gamemode_enable = if config.programs.gamemode.enable then "true" else "false";
           input_max_users = "2";
           quit_on_close_content = "2"; # CLI
           video_fullscreen = "true";
-          
+
           # Menu & Theme
           menu_driver = "xmb";
           menu_shader_pipeline = "2";
