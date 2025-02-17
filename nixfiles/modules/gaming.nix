@@ -7,12 +7,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      adwsteamgtk
       dwarf-fortress
       gzdoom
-      lutris
+      luanti
       mindustry-wayland
-      minetest
       prismlauncher
       superTuxKart
       theforceengine
@@ -22,13 +20,6 @@ in {
       gamemode = {
         enable = lib.mkDefault true;
         enableRenice = true;
-        # settings.custom = let
-        #   notification = flags: message:
-        #   "${pkgs.libnotify}/bin/notify-send ${flags} -a 'GameMode' -i 'input-gaming' ${message}";
-        # in {
-        #   start = notification "-u low" "'GameMode is on'";
-        #   end = notification "-u low" "'GameMode is off'";
-        # };
       };
       gamescope = {
         enable = lib.mkDefault true;

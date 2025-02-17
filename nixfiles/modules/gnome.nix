@@ -26,7 +26,6 @@ in {
         denaro
         gnome-firmware
         gnome-tweaks
-        newsflash
         papers
         wildcard
       ]) ++
@@ -48,9 +47,7 @@ in {
 
     programs = {
       firefox = {
-        nativeMessagingHosts.packages = [
-          pkgs.gnomeExtensions.gsconnect
-        ];
+        nativeMessagingHosts.packages = [ pkgs.gnomeExtensions.gsconnect ];
         preferences = {
           "browser.gnome-search-provider.enabled" = true;
         };
@@ -58,7 +55,7 @@ in {
 
       kdeconnect = {
         enable = lib.mkDefault true;
-        package = pkgs.gnomeExtensions.gsconnect;
+        package = lib.mkDefault pkgs.gnomeExtensions.gsconnect;
       };
 
       nautilus-open-any-terminal = {
