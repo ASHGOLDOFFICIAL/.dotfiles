@@ -146,6 +146,9 @@ in {
         edge-tiling = false;
         experimental-features = [ "variable-refresh-rate" ];
       };
+      "org/gnome/nautilus/icon-view" = {
+        captions = [ "size" "none" "none" ];
+      };
       "org/gnome/nautilus/preferences" = {
         click-policy = "single";
       };
