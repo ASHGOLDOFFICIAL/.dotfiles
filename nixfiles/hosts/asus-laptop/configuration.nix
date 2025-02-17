@@ -20,7 +20,7 @@
     };
     firefox.enable = true;
     gaming.enable = true;
-    gnome.enable = true;
+    plasma.enable = true;
     iwd.enable = true;
     nvidia.enable = true;
   };
@@ -74,11 +74,21 @@
       };
     };
   };
+
+  specialisation.gnome.configuration = {
+    custom = {
+      plasma.enable = lib.mkForce false;
+      gnome.enable = lib.mkForce true;
+    };
+  };
   
   users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
 
   virtualisation = {
-    docker.enable = true;
+    docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
     waydroid.enable = true;
