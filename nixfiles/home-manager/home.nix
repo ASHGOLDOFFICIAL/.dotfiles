@@ -1,17 +1,24 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./modules ./modules/nautilus-open-any-terminal.nix ];
+  imports = [ ./modules ];
 
   custom = {
     gnome = {
-      enable = true;
+      enable = false;
       epiphany = false;
+    };
+    plasma = {
+      enable = true;
+      touchpads = [ {
+        name = "ASUF1204:00 2808:0104 Touchpad";
+        vendorId = "2808";
+        productId = "0104";
+      } ];
     };
     firefox.enable = true;
     firefox-gnome-theme = {
-      # enable = config.programs.firefox.enable;
-      enable = false;
+      enable = config.custom.firefox.enable && config.custom.gnome.enable;
       profiles = [ "default" ];
       theme = "maia";
     };
@@ -34,7 +41,7 @@
       telephone = "ru_RU.UTF-8";
       time = "en_US.UTF-8";
     };
-    # packages = [ (pkgs.callPackage ./packages/skyscraper.nix {}) ];
+
     sessionPath = [
       "${config.home.homeDirectory}/.local/bin"
     ];
@@ -45,7 +52,6 @@
       PYTHON_HISTORY = "${config.xdg.stateHome}/python/history";
       WINEPREFIX = "${config.xdg.dataHome}/wine";
       XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
-      # _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
     };
     stateVersion = "23.05";
     username = "ashgoldofficial";
