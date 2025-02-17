@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }@args:
+{ config, pkgs, pkgsStable, pkgsUnstable, lib, ... }@args:
 
 let
   inherit (lib) mkDefault;
@@ -6,7 +6,6 @@ in {
   imports = [ ./modules ];
   
   boot = {
-    kernelPackages = mkDefault pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = mkDefault true;
       efi.canTouchEfiVariables = mkDefault true;
@@ -16,7 +15,7 @@ in {
 
   environment = {
     systemPackages = with pkgs; ([
-      (pkgs.callPackage ./packages/skyscraper.nix {})
+      ((pkgs.callPackage ./packages/skyscraper.nix {}).override { enableXdg = true; })
       alacritty
       btop
       calibre
@@ -25,15 +24,10 @@ in {
       ffmpeg
       gimp
       gnumake
-      godot_4
+      godot_4-mono
       imagemagick
       inkscape
-      (jetbrains.plugins.addPlugins jetbrains.idea-community [
-        "nixidea"
-        "scala"
-        "github-copilot"
-      ])
-      jetbrains.pycharm-community
+      kdePackages.akregator
       kdePackages.kdenlive
       keepassxc
       kid3
@@ -46,15 +40,11 @@ in {
       mame-tools
       maxcso
       mc
-      mcaselector
       mpv
       nekoray
-      neovide
       newsboat
       obs-studio
       openai-whisper-cpp
-      p7zip
-      pavucontrol
       putty
       python3
       qbittorrent
@@ -66,7 +56,6 @@ in {
       tealdeer
       telegram-desktop
       thunderbird
-      tor-browser
       trash-cli
       unzip
       vlc
@@ -78,6 +67,7 @@ in {
 
   fonts.packages = with pkgs; [
     corefonts
+    nerd-fonts.bigblue-terminal
     nerd-fonts.hack
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
@@ -85,6 +75,9 @@ in {
     roboto-mono
     roboto-serif
     roboto-slab
+    terminus_font
+    tt2020
+    uni-vga
     vistafonts
   ];
   
@@ -118,7 +111,16 @@ in {
   };
 
   nixpkgs = {
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        # emulationstation-de
+        "freeimage-unstable-2021-11-01"
+
+        # godot_4-mono
+        "dotnet-sdk-6.0.428"
+      ];
+    };
   };
 
   programs = {
@@ -157,7 +159,32 @@ in {
   };
 
   security.rtkit.enable = true;
+
   services = {
+    flatpak = {
+      enable = true;
+      packages = [
+        "com.jetbrains.IntelliJ-IDEA-Community"
+        "com.jetbrains.PyCharm-Community"
+        "com.jetbrains.Rider"
+      ];
+      overrides = {
+        "com.jetbrains.IntelliJ-IDEA-Community".Context.filesystems = [
+          "/run/user/1000/docker.sock"
+        ];
+        "com.jetbrains.PyCharm-Community".Context.filesystems = [
+          "/run/user/1000/docker.sock"
+        ];
+        "com.jetbrains.Rider".Context.filesystems = [
+          "/run/user/1000/docker.sock"
+        ];
+      };
+      uninstallUnmanaged = true;
+      update.auto = {
+        enable = true;
+        onCalendar = "weekly";
+      };
+    };
     fwupd.enable = true;
     pipewire = {
       enable = true;

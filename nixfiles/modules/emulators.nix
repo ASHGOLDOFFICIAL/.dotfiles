@@ -23,15 +23,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config = {
-      permittedInsecurePackages = [
-        # emulationstation-de
-        "freeimage-unstable-2021-11-01"
-      ];
-    };
-
     environment.systemPackages = with pkgs; ([
-      emulationstation-de
+      # emulationstation-de
       mame
       (wrapRetroArch {
         cores = with libretro; [
@@ -66,11 +59,11 @@ in {
           mupen64plus      # n64
           parallel-n64     # n64
         ] ++
-        
+
         lib.optionals cfg.sixthGeneration [
           flycast          # dreamcast
           dolphin          # gc
-        ] ++ 
+        ] ++
 
         lib.optionals cfg.seventhGeneration [
           dolphin          # wii
