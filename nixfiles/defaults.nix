@@ -201,43 +201,6 @@ in {
         options = mkDefault "terminate:ctrl_alt_bksp";
       };
     };
-    zapret = {
-      enable = true;
-      params = [
-       "--filter-udp=443"
-       "--dpi-desync=fake"
-       "--dpi-desync-repeats=6"
-       "--dpi-desync-fake-quic=${pkgs.callPackage ./packages/zapret-files.nix {}}/bin/fake/quic_initial_www_google_com.bin"
-       "<HOSTLIST>"
-
-       "--new"
-       "--filter-tcp=80"
-       "--dpi-desync=fake,split2"
-       "--dpi-desync-autottl=2"
-       "--dpi-desync-fooling=md5sig"
-       "<HOSTLIST>"
-
-       "--new"
-       "--filter-tcp=443"
-       "--dpi-desync=fake"
-       "--dpi-desync-repeats=6"
-       "--dpi-desync-fooling=md5sig"
-       "--dpi-desync-fake-tls=${pkgs.callPackage ./packages/zapret-files.nix {}}/bin/fake/tls_clienthello_www_google_com.bin"
-       "<HOSTLIST>"
-      ];
-      whitelist = [
-        "googlevideo.com"
-        "ggpht.com"
-        "ytimg.com"
-        "l.google.com"
-        "youtube.com"
-        "play.google.com"
-        "youtubei.googleapis.com"
-        "youtu.be"
-        "nhacmp3youtube.com"
-        "googleusercontent.com"
-      ];
-    };
   };
   
   system.stateVersion = "24.05";
