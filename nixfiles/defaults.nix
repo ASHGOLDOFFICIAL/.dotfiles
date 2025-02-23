@@ -3,7 +3,7 @@
 let
   inherit (lib) mkDefault;
 in {
-  imports = [ ./modules ];
+  imports = [ ./modules ./flatpaks.nix ];
   
   boot = {
     loader = {
@@ -22,9 +22,11 @@ in {
       colordiff
       fastfetch
       ffmpeg
+      gettext
       gimp
       gnumake
       godot_4-mono
+      host-spawn
       imagemagick
       inkscape
       kdePackages.akregator
@@ -45,7 +47,7 @@ in {
       newsboat
       obs-studio
       openai-whisper-cpp
-      putty
+      poedit
       python3
       qbittorrent
       scrcpy
@@ -161,30 +163,6 @@ in {
   security.rtkit.enable = true;
 
   services = {
-    flatpak = {
-      enable = true;
-      packages = [
-        "com.jetbrains.IntelliJ-IDEA-Community"
-        "com.jetbrains.PyCharm-Community"
-        "com.jetbrains.Rider"
-      ];
-      overrides = {
-        "com.jetbrains.IntelliJ-IDEA-Community".Context.filesystems = [
-          "/run/user/1000/docker.sock"
-        ];
-        "com.jetbrains.PyCharm-Community".Context.filesystems = [
-          "/run/user/1000/docker.sock"
-        ];
-        "com.jetbrains.Rider".Context.filesystems = [
-          "/run/user/1000/docker.sock"
-        ];
-      };
-      uninstallUnmanaged = true;
-      update.auto = {
-        enable = true;
-        onCalendar = "weekly";
-      };
-    };
     fwupd.enable = true;
     pipewire = {
       enable = true;
@@ -202,7 +180,7 @@ in {
       };
     };
   };
-  
+
   system.stateVersion = "24.05";
   time.timeZone = "Asia/Yekaterinburg";
   
