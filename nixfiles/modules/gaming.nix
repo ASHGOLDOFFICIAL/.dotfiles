@@ -10,6 +10,7 @@ in {
       dwarf-fortress
       gzdoom
       luanti
+      mcaselector
       mindustry-wayland
       prismlauncher
       superTuxKart
