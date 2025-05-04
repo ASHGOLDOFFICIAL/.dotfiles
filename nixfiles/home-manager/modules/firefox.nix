@@ -12,8 +12,11 @@ in {
         id = 0;
         name = "default";
         isDefault = true;
+        
         search = {
-          default = "Google";
+          default = "google";
+          privateDefault = "ddg";
+          force = true;
 
           engines = {
             "NixOS Options" = {
@@ -50,20 +53,18 @@ in {
                   { name = "t"; value = "1"; }
                 ];
               }];
-              iconUpdateURL = "https://static.retroachievements.org/assets/images/favicon.webp";
+              icon = "https://static.retroachievements.org/assets/images/favicon.webp";
               updateInterval = 30 * 24 * 60 * 60 * 1000; # every month
               definedAliases = [ "@ra" ];
             };
             
-            "Bing".metaData.hidden = true;
-            "DuckDuckGo".metaData.alias = "@d";
-            "Google".metaData.alias = "@g";
-            "Wikipedia (en)".metaData.alias = "@w";
+            "bing".metaData.hidden = true;
+            "ddg".metaData.alias = "@d";
+            "google".metaData.alias = "@g";
+            "wikipedia".metaData.alias = "@w";
           };
 
-          force = true;
-          order = [ "DuckDuckGo" "Google" "NixOS Options" "Nix Packages" "Wikipedia" ];
-          privateDefault = "DuckDuckGo";
+          order = [ "ddg" "google" "NixOS Options" "Nix Packages" "wikipedia" ];
         };
       };
     };
