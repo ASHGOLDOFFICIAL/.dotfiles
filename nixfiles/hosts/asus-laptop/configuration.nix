@@ -75,12 +75,12 @@
     };
   };
 
-  specialisation.gnome.configuration = {
-    custom = {
-      plasma.enable = lib.mkForce false;
-      gnome.enable = lib.mkForce true;
-    };
-  };
+  # specialisation.gnome.configuration = {
+  #   custom = {
+  #     plasma.enable = lib.mkForce false;
+  #     gnome.enable = lib.mkForce true;
+  #   };
+  # };
   
   users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
 
