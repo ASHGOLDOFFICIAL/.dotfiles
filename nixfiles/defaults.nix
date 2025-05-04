@@ -98,7 +98,10 @@ in {
     };
   };
   
-  networking.networkmanager.enable = mkDefault true;
+  networking = {
+    proxy.default = "http://127.0.0.1:2080";
+    networkmanager.enable = mkDefault true;
+  };
   
   nix = {
     gc = {
