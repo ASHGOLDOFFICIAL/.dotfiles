@@ -24,8 +24,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; ([
+      (skyscraper.override { enableXdg = true; })
       # emulationstation-de
       mame
+
       (wrapRetroArch {
         cores = with libretro; [
           beetle-pce       # pcenginecd

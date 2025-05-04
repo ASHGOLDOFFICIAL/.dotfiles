@@ -3,7 +3,7 @@
 let
   inherit (lib) mkDefault;
 in {
-  imports = [ ./modules ./flatpaks.nix ];
+  imports = [ ./modules ];
   
   boot = {
     loader = {
@@ -15,20 +15,23 @@ in {
 
   environment = {
     systemPackages = with pkgs; ([
-      ((pkgs.callPackage ./packages/skyscraper.nix {}).override { enableXdg = true; })
       alacritty
       btop
       calibre
       colordiff
+      dotnetCorePackages.dotnet_9.sdk
       fastfetch
       ffmpeg
       gettext
-      gimp
+      gimp3
       gnumake
       godot_4-mono
       host-spawn
       imagemagick
       inkscape
+      jetbrains.idea-community
+      jetbrains.pycharm-community
+      jetbrains.rider
       kdePackages.akregator
       kdePackages.kdenlive
       keepassxc
@@ -58,6 +61,7 @@ in {
       tealdeer
       telegram-desktop
       thunderbird
+      tiled
       trash-cli
       unzip
       vlc
@@ -120,7 +124,7 @@ in {
       allowUnfree = true;
       permittedInsecurePackages = [
         # emulationstation-de
-        "freeimage-unstable-2021-11-01"
+        "freeimage-3.18.0-unstable-2024-04-18"
 
         # godot_4-mono
         "dotnet-sdk-6.0.428"
