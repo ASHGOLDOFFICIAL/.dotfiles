@@ -134,6 +134,8 @@ in {
             "org.freedesktop.secrets".apiEnabled = false;
           };
 
+          kxkbrc.Layout.Options = "caps:backspace";
+
           plasmaparc.General.AudioFeedback = false;
         };
       };
