@@ -15,42 +15,38 @@ in {
 
   environment = {
     systemPackages = with pkgs; ([
+      (callPackage ./packages/ktalk.nix {})
       alacritty
+      android-studio
+      antimicrox
       btop
       calibre
       colordiff
-      dotnetCorePackages.dotnet_9.sdk
       fastfetch
       ffmpeg
       gettext
       gimp3
       gnumake
       godot_4-mono
-      host-spawn
       imagemagick
       inkscape
-      jetbrains.idea-community
-      jetbrains.pycharm-community
-      jetbrains.rider
-      kdePackages.akregator
+      jetbrains.idea
+      jetbrains.pycharm
+      jetbrains.rust-rover
       kdePackages.kdenlive
       keepassxc
       kid3
       kora-icon-theme
       krita
-      lf
+      libreoffice-fresh
       lm_sensors
       lollypop
       lshw
       mame-tools
       maxcso
-      mc
-      mpv
-      nekoray
-      newsboat
       obs-studio
-      openai-whisper-cpp
-      poedit
+      okteta
+      pgadmin4-desktopmode
       python3
       qbittorrent
       scrcpy
@@ -63,28 +59,20 @@ in {
       thunderbird
       tiled
       trash-cli
-      unzip
       vlc
-      wdiff
-      wl-clipboard
-      xdelta
+      vscode-fhs
+      whisper-cpp
     ]);
   };
 
   fonts.packages = with pkgs; [
-    corefonts
     nerd-fonts.bigblue-terminal
     nerd-fonts.hack
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    roboto
-    roboto-mono
-    roboto-serif
-    roboto-slab
     terminus_font
     tt2020
     uni-vga
-    vistafonts
   ];
   
   i18n = {
@@ -103,7 +91,6 @@ in {
   };
   
   networking = {
-    proxy.default = "http://127.0.0.1:2080";
     networkmanager.enable = mkDefault true;
   };
   
@@ -123,9 +110,6 @@ in {
     config = {
       allowUnfree = true;
       permittedInsecurePackages = [
-        # emulationstation-de
-        "freeimage-3.18.0-unstable-2024-04-18"
-
         # godot_4-mono
         "dotnet-sdk-6.0.428"
       ];
@@ -133,6 +117,7 @@ in {
   };
 
   programs = {
+    appimage.enable = true;
     git.enable = true;
     neovim = {
       enable = true;
@@ -151,7 +136,28 @@ in {
       defaultEditor = true;
     };
     nh.enable = true;
-    ssh.startAgent = true;
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        fuse
+      ];
+    };
+    proxychains = {
+      enable = true;
+      package = pkgs.proxychains-ng;
+      proxies = {
+        nekoray = {
+          enable = true;
+          type = "socks5";
+          host = "127.0.0.1";
+          port = 2080;
+        };
+      };
+    };
+    throne = {
+      enable = true;
+      tunMode.enable = true;
+    };
     tmux.enable = true;
     wireshark = {
       enable = true;
@@ -170,6 +176,7 @@ in {
   security.rtkit.enable = true;
 
   services = {
+    flatpak.enable = true;
     fwupd.enable = true;
     pipewire = {
       enable = true;

@@ -11,9 +11,7 @@ in {
     environment = {
       gnome.excludePackages = (with pkgs; [
         epiphany        # Browser
-        # evince          # Documents
         geary           # Email
-        gnome-software  # Software
         gnome-tour      # Tour
         totem           # Videos
         yelp            # Help
@@ -24,8 +22,11 @@ in {
         blanket
         dconf-editor
         denaro
+        fractal
         gnome-firmware
+        # gnome-kra-ora-thumbnailer
         gnome-tweaks
+        gradia
         papers
         wildcard
       ]) ++
@@ -35,9 +36,11 @@ in {
         bluetooth-battery-meter
         blur-my-shell
         caffeine
+        # copyous
+        gjs-osk
         gnome-bedtime
         net-speed-simplified
-        # pano
+        pip-on-top
         rounded-corners
         tiling-shell
       ]) ++
@@ -67,19 +70,13 @@ in {
     qt = {
       enable = true;
       platformTheme = "gnome";
-      style = "adwaita-dark";
+      style = "adwaita";
     };
 
     services = {
       switcherooControl.enable = config.hardware.nvidia.prime.offload.enable;
-      xserver = {
-        enable = true;
-        desktopManager.gnome.enable = true;
-        displayManager.gdm = {
-          enable = true;
-          wayland = lib.mkDefault true;
-        };
-      };
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
     };
   };
 }

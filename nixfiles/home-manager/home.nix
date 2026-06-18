@@ -5,23 +5,10 @@
 
   custom = {
     gnome = {
-      enable = false;
+      enable = true;
       epiphany = false;
     };
-    plasma = {
-      enable = true;
-      touchpads = [ {
-        name = "ASUF1204:00 2808:0104 Touchpad";
-        vendorId = "2808";
-        productId = "0104";
-      } ];
-    };
     firefox.enable = true;
-    firefox-gnome-theme = {
-      enable = config.custom.firefox.enable && config.custom.gnome.enable;
-      profiles = [ "default" ];
-      theme = "maia";
-    };
   };
 
   home = {
@@ -60,12 +47,12 @@
   programs = {
     git = {
       enable = true;
-      extraConfig = {
+      settings.user = {
         core.compression = 0;
+        email = "104313094+ASHGOLDOFFICIAL@users.noreply.github.com";
         http.postBuffer = 524288000;
+        name = "Andrey Shaat";
       };
-      userEmail = "104313094+ASHGOLDOFFICIAL@users.noreply.github.com";
-      userName = "Andrey Shaat";
     };
 
     home-manager.enable = true;
@@ -85,10 +72,6 @@
       viAlias = true;
       vimAlias = true;
 
-      plugins = with pkgs.vimPlugins; [
-        nvim-treesitter.withAllGrammars
-      ];
-
       extraPackages = with pkgs; [
         clang-tools
         fd
@@ -105,7 +88,7 @@
     zsh = {
       enable = true;
       autosuggestion.enable = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       history = {
         expireDuplicatesFirst = true;
         ignoreDups = true;

@@ -25,7 +25,6 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; ([
       (skyscraper.override { enableXdg = true; })
-      # emulationstation-de
       mame
 
       (wrapRetroArch {
@@ -40,6 +39,7 @@ in {
           mesen            # nes
           mesen-s          # snes
           mgba             # bga
+          nestopia         # nes
           puae             # amiga
           sameboy          # gb, gbc
           snes9x           # snes
@@ -49,7 +49,7 @@ in {
           bluemsx          # msx
           dosbox           # dos
           dosbox-pure      # dos
-          fmsx             # msx
+          # fmsx             # msx
           np2kai           # pc98
           puae             # amiga
         ] ++
@@ -60,11 +60,12 @@ in {
           melonds          # nds
           mupen64plus      # n64
           parallel-n64     # n64
+          swanstation      # psx
         ] ++
 
         lib.optionals cfg.sixthGeneration [
-          flycast          # dreamcast
           dolphin          # gc
+          flycast          # dreamcast
         ] ++
 
         lib.optionals cfg.seventhGeneration [
@@ -85,7 +86,7 @@ in {
           video_fullscreen = "true";
 
           # Menu & Theme
-          menu_driver = "xmb";
+          menu_driver = "ozone";
           menu_shader_pipeline = "2";
           menu_swap_ok_cancel_buttons = "true"; # Non-Japanese
           ozone_menu_color_theme = "12";
@@ -99,14 +100,12 @@ in {
     ] ++
 
     lib.optionals cfg.fifthGeneration [
-      duckstation  # psx
-      melonDS      # nds
+      melonds      # nds
       ppsspp       # psp
     ] ++
 
     lib.optionals cfg.sixthGeneration [
       dolphin-emu  # gc, wii
-      flycast      # dreamcast
       pcsx2        # ps2
       xemu         # xbox
     ] ++

@@ -14,15 +14,23 @@
       sixthGeneration = true;
 
       retroarchExtraConfig = {
+        netplay_nickname = "ASHGOLDOFFICIAL";
         video_driver = "vulkan";
         video_refresh_rate = "144.000000";
       };
     };
     firefox.enable = true;
     gaming.enable = true;
-    plasma.enable = true;
+    gnome.enable = true;
     iwd.enable = true;
+    media.enable = true;
     nvidia.enable = true;
+  };
+  
+  environment = {
+    systemPackages = with pkgs; ([
+      tor-browser
+    ]);
   };
 
   hardware = {
@@ -44,7 +52,6 @@
   networking.hostName = "aurum";
 
   programs = {
-    adb.enable = true;
     virt-manager.enable = true;
   };
 
@@ -75,12 +82,10 @@
     };
   };
 
-  # specialisation.gnome.configuration = {
-  #   custom = {
-  #     plasma.enable = lib.mkForce false;
-  #     gnome.enable = lib.mkForce true;
-  #   };
-  # };
+  specialisation.hypr.configuration = {
+    custom.gnome.enable = lib.mkForce false;
+    custom.hyprland.enable = lib.mkForce true;
+  };
   
   users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
 
@@ -91,6 +96,5 @@
     };
     libvirtd.enable = true;
     spiceUSBRedirection.enable = true;
-    waydroid.enable = true;
   };
 }

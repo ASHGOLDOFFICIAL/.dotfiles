@@ -115,6 +115,7 @@ in {
       };
 
       "org/gnome/desktop/input-sources" = {
+        per-window = true;
         sources = [
           (mkTuple [ "xkb" "us" ])
           (mkTuple [ "xkb" "ru" ])
@@ -130,7 +131,7 @@ in {
         clock-format = "12h";
         clock-show-weekday = true;
         cursor-theme = "Adwaita";
-        enable-hot-corners = false;
+        enable-hot-corners = true;
         font-name = "Cantarell 11";
         gtk-theme = "Adwaita";
         icon-theme = "kora";
@@ -156,14 +157,18 @@ in {
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         ];
-        switch-to-workspace-left = [ "<Alt><Super>j" ];
-        switch-to-workspace-right = [ "<Alt><Super>k" ];
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Alt>z";
         command = "alacritty";
         name = "Open alacritty";
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+        binding = "<Shift><Alt>Return";
+        command = "dconf write /org/gnome/shell/extensions/gjsosk/indicator/opened true";
+        name = "On-Screen Keyboard";
       };
 
       "org/gnome/shell" = {
@@ -173,10 +178,11 @@ in {
           bluetooth-battery-meter.extensionUuid
           blur-my-shell.extensionUuid
           caffeine.extensionUuid
+          copyous.extensionUuid
           gnome-bedtime.extensionUuid
           gsconnect.extensionUuid
           net-speed-simplified.extensionUuid
-          pano.extensionUuid
+          pip-on-top.extensionUuid
           rounded-corners.extensionUuid
           tiling-shell.extensionUuid
         ];
@@ -184,7 +190,6 @@ in {
         favorite-apps = [
           "steam.desktop"
           "firefox.desktop"
-          # "firefox-devedition.desktop"
           "org.telegram.desktop.desktop"
           "org.gnome.Nautilus.desktop"
           "org.keepassxc.KeePassXC.desktop"
@@ -192,6 +197,7 @@ in {
           "vlc.desktop"
           "subtitleedit.desktop"
           "org.es_de.frontend.desktop"
+          "org.kde.krita.desktop"
         ];
       };
       
@@ -221,6 +227,9 @@ in {
         systemcolr = true;
         togglebool = false;
         wpos = 1;
+      };
+      "org/gnome/shell/extensions/pip-on-top" = {
+        stick = true;
       };
       "org/gnome/shell/extensions/tilingshell" = {
         enable-autotiling = true;

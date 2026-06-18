@@ -9,11 +9,10 @@ in {
     environment.systemPackages = with pkgs; [
       dwarf-fortress
       gzdoom
-      luanti
       mcaselector
       mindustry-wayland
       prismlauncher
-      superTuxKart
+      supertuxkart
       theforceengine
     ];
 
@@ -30,7 +29,6 @@ in {
         enable = lib.mkDefault true;
         extraCompatPackages = with pkgs; [ proton-ge-bin ];
         gamescopeSession.enable = true;
-        protontricks.enable = true;
       };
     };
   };

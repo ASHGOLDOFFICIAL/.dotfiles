@@ -7,6 +7,7 @@ key.set({ "n", "i", "t", "v" }, "<C-]>", "<ESC>", { noremap = true })
 key.set({ "n" }, "<M-BS>", "vbd")
 key.set({ "i" }, "<M-BS>", "<ESC>vbc")
 
+
 o.termguicolors = true
 o.clipboard = "unnamedplus"
 
@@ -34,6 +35,7 @@ o.shiftwidth = 4
 -- Windows
 o.splitbelow = true
 o.splitright = true
+o.winborder = 'rounded'
 
 
 require("terminal")
@@ -76,4 +78,12 @@ if g.nixos then
     --local opts = require("configs.treesitter")
     require("nvim-treesitter.configs").setup({ auto_install = false })
 end
+
+vim.diagnostic.config({
+    virtual_lines = true,
+    virtual_text = true
+})
+vim.lsp.enable({
+    'luals'
+})
 

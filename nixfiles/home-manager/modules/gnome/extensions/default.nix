@@ -27,7 +27,7 @@ in {
           gsconnect.extensionUuid
           net-speed-simplified.extensionUuid
           pano.extensionUuid
-          rounded-corners.extensionUuid
+          xremap.extensionUuid
         ];
       };
 

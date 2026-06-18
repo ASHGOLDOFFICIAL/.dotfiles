@@ -7,7 +7,9 @@
     ./firefox.nix
     ./gaming.nix
     ./gnome.nix
+    ./hyprland.nix
     ./iwd.nix
+    ./media.nix
     ./nvidia.nix
     ./plasma.nix
   ];

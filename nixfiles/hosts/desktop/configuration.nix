@@ -12,6 +12,7 @@
     firefox.enable = true;
     gaming.enable = true;
     gnome.enable = true;
+    media.enable = true;
     nvidia.enable = true;
   };
   
@@ -42,10 +43,6 @@
   
   services = {
     flatpak.enable = true;
-    jellyfin = {
-      enable = true;
-      openFirewall = true;
-    };
     printing = {
       enable = true;
       drivers = with pkgs; [ epson_201207w gutenprint ];
