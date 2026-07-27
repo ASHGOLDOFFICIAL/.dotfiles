@@ -24,9 +24,10 @@ in {
         denaro
         fractal
         gnome-firmware
-        # gnome-kra-ora-thumbnailer
+        gnome-kra-ora-thumbnailer
         gnome-tweaks
         gradia
+        gst_all_1.gstreamer
         papers
         wildcard
       ]) ++
@@ -36,12 +37,11 @@ in {
         bluetooth-battery-meter
         blur-my-shell
         caffeine
-        # copyous
-        gjs-osk
+        copyous
         gnome-bedtime
+        live-lock-screen
         net-speed-simplified
         pip-on-top
-        rounded-corners
         tiling-shell
       ]) ++
 

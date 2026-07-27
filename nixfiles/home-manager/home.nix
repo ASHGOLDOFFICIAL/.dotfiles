@@ -4,11 +4,12 @@
   imports = [ ./modules ];
 
   custom = {
-    gnome = {
-      enable = true;
-      epiphany = false;
-    };
+    gnome.enable = true;
     firefox.enable = true;
+    firefox-gnome-theme = {
+      enable = true;
+      profiles = [ "default" ];
+    };
   };
 
   home = {
@@ -71,14 +72,14 @@
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
-
+      withPython3 = false;
+      withRuby = false;
       extraPackages = with pkgs; [
         clang-tools
         fd
         lua-language-server
         nil
-        nodePackages.typescript-language-server
-        python311Packages.python-lsp-server
+        python314Packages.python-lsp-server
         ripgrep
         rust-analyzer
         vscode-langservers-extracted
@@ -116,6 +117,7 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+      setSessionVariables = true;
     };
   };
 }

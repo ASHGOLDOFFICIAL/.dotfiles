@@ -6,7 +6,7 @@
 }:
 
 let
-  version = "3.4.0";
+  version = "3.6.0";
   pname = "ktalk";
 
   src = fetchurl {

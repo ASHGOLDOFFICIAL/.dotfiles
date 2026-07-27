@@ -2,7 +2,7 @@
 
 {
   services.flatpak = {
-    enable = true;
+    enable = false;
     packages = [
       "com.jetbrains.IntelliJ-IDEA-Community"
       "com.jetbrains.PyCharm-Community"

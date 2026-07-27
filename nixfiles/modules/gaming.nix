@@ -7,6 +7,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      boxflat
       dwarf-fortress
       gzdoom
       mcaselector
@@ -31,5 +32,9 @@ in {
         gamescopeSession.enable = true;
       };
     };
+
+    services.udev.packages = with pkgs; [
+      boxflat
+    ];
   };
 }

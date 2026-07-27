@@ -15,9 +15,7 @@ in {
 
   environment = {
     systemPackages = with pkgs; ([
-      (callPackage ./packages/ktalk.nix {})
       alacritty
-      android-studio
       antimicrox
       btop
       calibre
@@ -46,7 +44,8 @@ in {
       maxcso
       obs-studio
       okteta
-      pgadmin4-desktopmode
+      opentrack
+      p7zip
       python3
       qbittorrent
       scrcpy
@@ -60,7 +59,6 @@ in {
       tiled
       trash-cli
       vlc
-      vscode-fhs
       whisper-cpp
     ]);
   };
@@ -117,7 +115,6 @@ in {
   };
 
   programs = {
-    appimage.enable = true;
     git.enable = true;
     neovim = {
       enable = true;
@@ -176,7 +173,6 @@ in {
   security.rtkit.enable = true;
 
   services = {
-    flatpak.enable = true;
     fwupd.enable = true;
     pipewire = {
       enable = true;

@@ -157,35 +157,18 @@ in {
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         ];
+        play = [ "<Shift><Alt>space" ];
+        volume-down = [ "<Shift><Alt>Down" ];
+        volume-up = [ "<Shift><Alt>Up" ];
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Alt>z";
         command = "alacritty";
         name = "Open alacritty";
       };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-        binding = "<Shift><Alt>Return";
-        command = "dconf write /org/gnome/shell/extensions/gjsosk/indicator/opened true";
-        name = "On-Screen Keyboard";
-      };
 
       "org/gnome/shell" = {
-        disable-user-extensions = false;
-        enabled-extensions = with pkgs.gnomeExtensions; [
-          alphabetical-app-grid.extensionUuid
-          bluetooth-battery-meter.extensionUuid
-          blur-my-shell.extensionUuid
-          caffeine.extensionUuid
-          copyous.extensionUuid
-          gnome-bedtime.extensionUuid
-          gsconnect.extensionUuid
-          net-speed-simplified.extensionUuid
-          pip-on-top.extensionUuid
-          rounded-corners.extensionUuid
-          tiling-shell.extensionUuid
-        ];
         # TODO: check if apps are installed
         favorite-apps = [
           "steam.desktop"
@@ -203,61 +186,6 @@ in {
       
       "org/gnome/shell/app-switcher" = {
         current-workspace-only = true;
-      };
-
-      "org/gnome/shell/extensions/alphabetical-app-grid" = {
-        folder-order-position = "start";
-      };
-      "org/gnome/shell/extensions/bedtime-mode" = {
-        ondemand-button-location = "menu";
-      };
-      "org/gnome/shell/extensions/blur-my-shell/panel" = {
-        blur = false;
-      };
-      "org/gnome/shell/extensions/blur-my-shell/appfolder" = {
-        blur = false;
-      };
-      "org/gnome/shell/extensions/lennart-k/rounded_corners" = {
-        corner-radius = mkInt32 16;
-      };
-      "org/gnome/shell/extensions/netspeedsimplified" = {
-        iconstoright = true;
-        lockmouseactions = true;
-        mode = 3;
-        systemcolr = true;
-        togglebool = false;
-        wpos = 1;
-      };
-      "org/gnome/shell/extensions/pip-on-top" = {
-        stick = true;
-      };
-      "org/gnome/shell/extensions/tilingshell" = {
-        enable-autotiling = true;
-        outer-gaps = mkUint32 0;
-        inner-gaps = mkUint32 0;
-        layouts-json = builtins.toJSON [
-          {
-            "id" = "Layout 1";
-            "tiles" = [
-              {"x" = 0; "y" = 0; "width" = 0.5; "height" = 1; "groups" = [1];}
-              {"x" = 0.5; "y" = 0; "width" = 0.5; "height" = 1; "groups" = [1];}
-            ];
-          }
-          {
-            "id" = "Layout 2";
-            "tiles" = [
-              {"x" = 0; "y" = 0; "width" = 0.33; "height" = 1; "groups" = [1];}
-              {"x" = 0.33; "y" = 0; "width" = 0.67; "height" = 1; "groups" = [1];}
-            ];
-          }
-          {
-            "id" = "Layout 3";
-            "tiles" = [
-              {"x" = 0; "y" = 0; "width" = 0.67; "height" = 1; "groups" = [1];}
-              {"x" = 0.67; "y" = 0; "width" = 0.33; "height" = 1; "groups" = [1];}
-            ];
-          }
-        ];
       };
       "org/gnome/shell/world-clocks" = {
         world-clocks = locations;

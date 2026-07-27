@@ -2,7 +2,6 @@
 
 let
   cfg = config.custom.firefox-gnome-theme;
-  firefox-gnome-theme = pkgs.callPackage ../packages/firefox-gnome-theme.nix {};
 in {
   options.custom.firefox-gnome-theme = {
     enable = lib.mkEnableOption "a GNOME theme for Firefox";
@@ -26,8 +25,8 @@ in {
       value =
         let
           importColorchemes = theme: lib.optionalString (theme != "default") ''
-            @import "${firefox-gnome-theme}/theme/colors/light-${theme}.css";
-            @import "${firefox-gnome-theme}/theme/colors/dark-${theme}.css";
+            @import "${pkgs.firefox-gnome-theme}/theme/colors/light-${theme}.css";
+            @import "${pkgs.firefox-gnome-theme}/theme/colors/dark-${theme}.css";
           '';
         in {
           settings = {
@@ -39,11 +38,11 @@ in {
           };
 
           userChrome = lib.mkBefore (''
-            @import "${firefox-gnome-theme}/userChrome.css";
+            @import "${pkgs.firefox-gnome-theme}/userChrome.css";
           '' + importColorchemes cfg.theme);
 
           userContent = lib.mkBefore (''
-            @import "${firefox-gnome-theme}/userContent.css";
+            @import "${pkgs.firefox-gnome-theme}/userContent.css";
           '' + importColorchemes cfg.theme);
         };
     }) cfg.profiles);

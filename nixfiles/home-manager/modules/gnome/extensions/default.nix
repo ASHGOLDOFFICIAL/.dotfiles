@@ -23,11 +23,13 @@ in {
           alphabetical-app-grid.extensionUuid
           bluetooth-battery-meter.extensionUuid
           caffeine.extensionUuid
+          copyous.extensionUuid
           gnome-bedtime.extensionUuid
+          live-lock-screen.extensionUuid
           gsconnect.extensionUuid
           net-speed-simplified.extensionUuid
-          pano.extensionUuid
-          xremap.extensionUuid
+          pip-on-top.extensionUuid
+          rounded-corners.extensionUuid
         ];
       };
 
@@ -47,6 +49,9 @@ in {
         systemcolr = true;
         togglebool = false;
         wpos = 1;
+      };
+      "org/gnome/shell/extensions/pip-on-top" = {
+        stick = true;
       };
     };
   };

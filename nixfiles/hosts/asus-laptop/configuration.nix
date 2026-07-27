@@ -23,7 +23,7 @@
     gaming.enable = true;
     gnome.enable = true;
     iwd.enable = true;
-    media.enable = true;
+    media.enable = false;
     nvidia.enable = true;
   };
   
@@ -80,11 +80,6 @@
         CPU_HWP_DYN_BOOST_ON_AC = 1;
       };
     };
-  };
-
-  specialisation.hypr.configuration = {
-    custom.gnome.enable = lib.mkForce false;
-    custom.hyprland.enable = lib.mkForce true;
   };
   
   users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
