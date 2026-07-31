@@ -25,11 +25,9 @@ in {
           caffeine.extensionUuid
           copyous.extensionUuid
           gnome-bedtime.extensionUuid
-          live-lock-screen.extensionUuid
           gsconnect.extensionUuid
           net-speed-simplified.extensionUuid
           pip-on-top.extensionUuid
-          rounded-corners.extensionUuid
         ];
       };
 

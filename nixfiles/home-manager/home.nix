@@ -67,24 +67,24 @@
       };
     };
 
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      withPython3 = false;
-      withRuby = false;
-      extraPackages = with pkgs; [
-        clang-tools
-        fd
-        lua-language-server
-        nil
-        python314Packages.python-lsp-server
-        ripgrep
-        rust-analyzer
-        vscode-langservers-extracted
-      ];
-    };
+#    neovim = {
+#      enable = true;
+#      defaultEditor = true;
+#      viAlias = true;
+#      vimAlias = true;
+#      withPython3 = false;
+#      withRuby = false;
+#      extraPackages = with pkgs; [
+#        clang-tools
+#        fd
+#        lua-language-server
+#        nil
+#        python314Packages.python-lsp-server
+#        ripgrep
+#        rust-analyzer
+#        vscode-langservers-extracted
+#      ];
+#    };
 
     zsh = {
       enable = true;

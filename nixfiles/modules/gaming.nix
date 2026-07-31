@@ -8,13 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       boxflat
-      dwarf-fortress
-      gzdoom
-      mcaselector
-      mindustry-wayland
       prismlauncher
-      supertuxkart
-      theforceengine
     ];
 
     programs = {

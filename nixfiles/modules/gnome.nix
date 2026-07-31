@@ -10,11 +10,11 @@ in {
   config = lib.mkIf cfg.enable {
     environment = {
       gnome.excludePackages = (with pkgs; [
-        epiphany        # Browser
-        geary           # Email
-        gnome-tour      # Tour
-        totem           # Videos
-        yelp            # Help
+        epiphany
+        geary
+        gnome-tour
+        totem
+        yelp
       ]);
 
       systemPackages = (with pkgs; [
@@ -27,7 +27,6 @@ in {
         gnome-kra-ora-thumbnailer
         gnome-tweaks
         gradia
-        gst_all_1.gstreamer
         papers
         wildcard
       ]) ++
@@ -39,7 +38,6 @@ in {
         caffeine
         copyous
         gnome-bedtime
-        live-lock-screen
         net-speed-simplified
         pip-on-top
         tiling-shell
