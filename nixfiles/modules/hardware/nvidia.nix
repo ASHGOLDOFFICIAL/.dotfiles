@@ -3,9 +3,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.nvidia;
+  cfg = config.custom.hardware.nvidia;
 in {
-  options.custom.nvidia.enable = lib.mkEnableOption "Nvidia specific options";
+  options.custom.hardware.nvidia.enable = lib.mkEnableOption "Nvidia specific options";
 
   config = lib.mkIf cfg.enable {
     boot.kernelParams = [ "nvidia-drm.fbdev=1" ];

@@ -1,13 +1,18 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.gaming;
+  cfg = config.custom.gui.gaming;
 in {
-  options.custom.gaming.enable = lib.mkEnableOption "gaming specific options";
+  options.custom.gui.gaming.enable = lib.mkEnableOption "gaming specific options";
+
+  imports = [
+    ./emulators.nix
+  ];
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       boxflat
+      opentrack
       prismlauncher
     ];
 

@@ -15,7 +15,11 @@ in {
       };
       
       "org/gnome/shell/extensions/blur-my-shell/panel" = {
-        blur = false;
+        blur = true;
+        force-light-text = true;
+        override-background = true;
+        override-background-dynamically = false;
+        unblur-in-overview = true;
       };
 
       "org/gnome/shell/extensions/blur-my-shell/appfolder" = {

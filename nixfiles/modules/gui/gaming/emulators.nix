@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.emulators;
+  cfg = config.custom.gui.gaming.emulators;
 in {
-  options.custom.emulators = {
+  options.custom.gui.gaming.emulators = {
     enable = lib.mkEnableOption "emulators";
     
     pc = lib.mkEnableOption "retro PC emulators";

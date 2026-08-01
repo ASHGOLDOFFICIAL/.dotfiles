@@ -3,9 +3,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.hyprland;
+  cfg = config.custom.gui.desktop.hyprland;
 in {
-  options.custom.hyprland.enable = lib.mkEnableOption "Hyprland";
+  options.custom.gui.desktop.hyprland.enable = lib.mkEnableOption "Hyprland";
   
   config = lib.mkIf cfg.enable {
     environment = {

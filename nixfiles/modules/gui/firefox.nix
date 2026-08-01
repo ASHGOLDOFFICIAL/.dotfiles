@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.firefox;
+  cfg = config.custom.gui.firefox;
 in {
-  options.custom.firefox = {
+  options.custom.gui.firefox = {
     enable = lib.mkEnableOption "Firefox web browser";
   };
 

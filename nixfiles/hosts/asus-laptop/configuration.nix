@@ -7,24 +7,30 @@
   ];
   
   custom = {
-    emulators = {
+    gui = {
       enable = true;
-      pc = true;
-      fifthGeneration = true;
-      sixthGeneration = true;
+      gaming = {
+        enable = true;
+        emulators = {
+          enable = true;
+          pc = true;
+          fifthGeneration = true;
+          sixthGeneration = true;
 
-      retroarchExtraConfig = {
-        netplay_nickname = "ASHGOLDOFFICIAL";
-        video_driver = "vulkan";
-        video_refresh_rate = "144.000000";
+          retroarchExtraConfig = {
+            netplay_nickname = "ASHGOLDOFFICIAL";
+            video_driver = "vulkan";
+            video_refresh_rate = "144.000000";
+          };
+        };
       };
+      graphics.enable = true;
+      media.enable = true;
+      programming.enable = true;
     };
-    firefox.enable = true;
-    gaming.enable = true;
-    gnome.enable = true;
+    hardware.nvidia.enable = true;
     iwd.enable = true;
-    media.enable = false;
-    nvidia.enable = true;
+    server.media.enable = false;
   };
   
   environment = {

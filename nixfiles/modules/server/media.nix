@@ -3,11 +3,11 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.media;
+  cfg = config.custom.server.media;
   groupName = "mediagroup";
   mediaDir = "/home/media";
 in {
-  options.custom.media = {
+  options.custom.server.media = {
     enable = lib.mkEnableOption "media server";
   };
 

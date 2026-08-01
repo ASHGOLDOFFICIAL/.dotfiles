@@ -19,16 +19,20 @@ in {
     in {
       "org/gnome/shell" = {
         disable-user-extensions = false;
-        enabled-extensions = with pkgs.gnomeExtensions; [
-          alphabetical-app-grid.extensionUuid
-          bluetooth-battery-meter.extensionUuid
-          caffeine.extensionUuid
-          copyous.extensionUuid
-          gnome-bedtime.extensionUuid
-          gsconnect.extensionUuid
-          net-speed-simplified.extensionUuid
-          pip-on-top.extensionUuid
-        ];
+        enabled-extensions = map (x: x.extensionUuid)
+          (with pkgs.gnomeExtensions; [
+            alphabetical-app-grid
+            auto-accent-colour
+            bluetooth-battery-meter
+            caffeine
+            copyous
+            gnome-bedtime
+            gsconnect
+            light-style
+            net-speed-simplified
+            pip-on-top
+            random-wallpaper
+          ]);
       };
 
       "org/gnome/shell/extensions/alphabetical-app-grid" = {
@@ -50,6 +54,23 @@ in {
       };
       "org/gnome/shell/extensions/pip-on-top" = {
         stick = true;
+      };
+      "org/gnome/shell/extensions/space-iflow-randomwallpaper" = {
+        auto-fetch = true;
+        change-type = 2;
+        hide-panel-icon = true;
+
+        hours = 0;
+        minutes = 7;
+
+        sources = [ "0" ];
+      };
+      "org/gnome/shell/extensions/space-iflow-randomwallpaper/sources/general/0" = {
+        name = "GNOME Backgrounds";
+        type = 4;
+      };
+      "org/gnome/shell/extensions/space-iflow-randomwallpaper/sources/localFolder/0" = {
+        folder = "${config.xdg.dataHome}/backgrounds";
       };
     };
   };

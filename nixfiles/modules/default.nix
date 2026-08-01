@@ -3,14 +3,9 @@
 
 {
   imports = [
-    ./emulators.nix
-    ./firefox.nix
-    ./gaming.nix
-    ./gnome.nix
-    ./hyprland.nix
+    ./gui
+    ./hardware
+    ./server
     ./iwd.nix
-    ./media.nix
-    ./nvidia.nix
-    ./plasma.nix
   ];
 }

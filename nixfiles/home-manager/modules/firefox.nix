@@ -67,6 +67,10 @@ in {
 
           order = [ "ddg" "google" "NixOS Options" "Nix Packages" "wikipedia" ];
         };
+
+        settings = {
+          "browser.download.dir" = "${config.xdg.userDirs.download}/browser";
+        };
       };
     };
   };

@@ -3,9 +3,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.gnome;
+  cfg = config.custom.gui.desktop.gnome;
 in {
-  options.custom.gnome.enable = lib.mkEnableOption "GNOME desktop environment";
+  options.custom.gui.desktop.gnome.enable = lib.mkEnableOption "GNOME desktop environment";
   
   config = lib.mkIf cfg.enable {
     environment = {
@@ -23,23 +23,29 @@ in {
         dconf-editor
         denaro
         fractal
+        gjs # https://github.com/NixOS/nixpkgs/issues/547995
         gnome-firmware
         gnome-kra-ora-thumbnailer
         gnome-tweaks
         gradia
+        kora-icon-theme
         papers
+        rufin
         wildcard
       ]) ++
 
       (with pkgs.gnomeExtensions; [
         alphabetical-app-grid
+        auto-accent-colour
         bluetooth-battery-meter
         blur-my-shell
         caffeine
         copyous
         gnome-bedtime
+        light-style
         net-speed-simplified
         pip-on-top
+        random-wallpaper
         tiling-shell
       ]) ++
 

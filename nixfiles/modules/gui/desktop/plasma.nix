@@ -3,9 +3,9 @@
 { config, pkgs, lib, ... }:
 
 let
-  cfg = config.custom.plasma;
+  cfg = config.custom.gui.desktop.plasma;
 in {
-  options.custom.plasma.enable = lib.mkEnableOption "KDE Plasma desktop environment";
+  options.custom.gui.desktop.plasma.enable = lib.mkEnableOption "KDE Plasma desktop environment";
 
   config = lib.mkIf cfg.enable {
     programs = {
