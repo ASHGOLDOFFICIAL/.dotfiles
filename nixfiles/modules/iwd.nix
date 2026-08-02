@@ -10,7 +10,7 @@ in {
       networkmanager.wifi.backend = "iwd";
       wireless.iwd = {
         enable = true;
-        settings.Settings.AutoConnect = true;
+        settings.Settings.AutoConnect = lib.mkDefault true;
       };
     };
   };

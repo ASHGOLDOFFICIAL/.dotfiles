@@ -18,20 +18,15 @@ in {
       ]);
 
       systemPackages = (with pkgs; [
-        amberol
         blanket
         dconf-editor
-        denaro
-        fractal
         gjs # https://github.com/NixOS/nixpkgs/issues/547995
         gnome-firmware
         gnome-kra-ora-thumbnailer
         gnome-tweaks
-        gradia
         kora-icon-theme
         papers
         rufin
-        wildcard
       ]) ++
 
       (with pkgs.gnomeExtensions; [
@@ -47,13 +42,14 @@ in {
         pip-on-top
         random-wallpaper
         tiling-shell
+        wack-sonoma-lockscreen
       ]) ++
 
       (lib.optional config.programs.steam.enable pkgs.adwsteamgtk);
     };
 
     programs = {
-      firefox = {
+      firefox = lib.mkIf config.programs.firefox.enable {
         nativeMessagingHosts.packages = [ pkgs.gnomeExtensions.gsconnect ];
         preferences = {
           "browser.gnome-search-provider.enabled" = true;
@@ -72,9 +68,9 @@ in {
     };
 
     qt = {
-      enable = true;
-      platformTheme = "gnome";
-      style = "adwaita";
+      enable = lib.mkDefault true;
+      platformTheme = lib.mkDefault "gnome";
+      style = lib.mkDefault "adwaita";
     };
 
     services = {

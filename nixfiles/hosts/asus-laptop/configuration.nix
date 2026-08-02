@@ -7,6 +7,7 @@
   ];
   
   custom = {
+    cli.enable = true;
     gui = {
       enable = true;
       gaming = {
@@ -87,9 +88,21 @@
       };
     };
   };
-  
-  users.users.ashgoldofficial.extraGroups = [ "adbusers" "libvirtd" ];
 
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.ashgoldofficial = {
+      isNormalUser = true;
+      description = "Andrey Shaat";
+      extraGroups = [
+        "adbusers"
+        "libvirtd"
+        "networkmanager"
+        "wheel"
+        "wireshark"
+      ];
+    };
+  };
   virtualisation = {
     docker.rootless = {
       enable = true;

@@ -32,6 +32,7 @@ in {
             net-speed-simplified
             pip-on-top
             random-wallpaper
+            wack-sonoma-lockscreen
           ]);
       };
 
@@ -71,6 +72,9 @@ in {
       };
       "org/gnome/shell/extensions/space-iflow-randomwallpaper/sources/localFolder/0" = {
         folder = "${config.xdg.dataHome}/backgrounds";
+      };
+      "org/gnome/shell/extensions/wack-lockscreen-clock" = {
+        lockscreen-mode = "cupertino";
       };
     };
   };

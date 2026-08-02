@@ -4,7 +4,6 @@
 
 let
   cfg = config.custom.gui;
-  inherit (lib) mkDefault;
 in {
   options.custom.gui.enable = lib.mkEnableOption "default GUI apps and settings";
 
@@ -31,7 +30,6 @@ in {
         keepassxc
         libreoffice-fresh
         qbittorrent
-        scrcpy
         telegram-desktop
         thunderbird
       ]);
@@ -59,9 +57,9 @@ in {
         excludePackages = [ pkgs.xterm ];
         wacom.enable = true;
         xkb = {
-          layout = mkDefault "us,ru";
-          variant = mkDefault "";
-          options = mkDefault "terminate:ctrl_alt_bksp";
+          layout = lib.mkDefault "us,ru";
+          variant = lib.mkDefault "";
+          options = lib.mkDefault "terminate:ctrl_alt_bksp";
         };
       };
     };

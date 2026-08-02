@@ -1,141 +1,63 @@
 { config, pkgs, pkgsStable, pkgsUnstable, lib, ... }@args:
 
-let
-  inherit (lib) mkDefault;
-in {
+{
   imports = [ ./modules ];
   
   boot = {
     loader = {
-      systemd-boot.enable = mkDefault true;
-      efi.canTouchEfiVariables = mkDefault true;
+      systemd-boot.enable = lib.mkDefault true;
+      efi.canTouchEfiVariables = lib.mkDefault true;
     };
-    plymouth.enable = mkDefault false;
-  };
-
-  environment = {
-    systemPackages = with pkgs; ([
-      btop
-      colordiff
-      fastfetch
-      ffmpeg
-      gettext
-      gnumake
-      imagemagick
-      lm_sensors
-      lshw
-      p7zip
-      python3
-      speedtest-rs
-      stow
-      tealdeer
-      trash-cli
-      whisper-cpp
-    ]);
+    plymouth.enable = lib.mkDefault false;
   };
   
   i18n = {
-    defaultLocale = mkDefault "en_US.UTF-8";
+    defaultLocale = lib.mkDefault "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_ADDRESS = mkDefault "ru_RU.UTF-8";
-      LC_IDENTIFICATION = mkDefault "ru_RU.UTF-8";
-      LC_MEASUREMENT = mkDefault "ru_RU.UTF-8";
-      LC_MONETARY = mkDefault "ru_RU.UTF-8";
-      LC_NAME = mkDefault "en_US.UTF-8";
-      LC_NUMERIC = mkDefault "ru_RU.UTF-8";
-      LC_PAPER = mkDefault "ru_RU.UTF-8";
-      LC_TELEPHONE = mkDefault "ru_RU.UTF-8";
-      LC_TIME = mkDefault "en_US.UTF-8";
+      LC_ADDRESS = lib.mkDefault "ru_RU.UTF-8";
+      LC_IDENTIFICATION = lib.mkDefault "ru_RU.UTF-8";
+      LC_MEASUREMENT = lib.mkDefault "ru_RU.UTF-8";
+      LC_MONETARY = lib.mkDefault "ru_RU.UTF-8";
+      LC_NAME = lib.mkDefault "en_US.UTF-8";
+      LC_NUMERIC = lib.mkDefault "ru_RU.UTF-8";
+      LC_PAPER = lib.mkDefault "ru_RU.UTF-8";
+      LC_TELEPHONE = lib.mkDefault "ru_RU.UTF-8";
+      LC_TIME = lib.mkDefault "en_US.UTF-8";
     };
   };
   
   networking = {
-    networkmanager.enable = mkDefault true;
+    networkmanager.enable = lib.mkDefault true;
   };
   
   nix = {
     gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+      automatic = lib.mkDefault true;
+      dates = lib.mkDefault "weekly";
+      options = lib.mkDefault "--delete-older-than 7d";
     };
     settings = {
-      auto-optimise-store = true;
+      auto-optimise-store = lib.mkDefault true;
       experimental-features = [ "flakes" "nix-command" ];
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = lib.mkDefault true;
 
-  programs = {
-    git.enable = true;
-    neovim = {
-      enable = true;
-      configure = {
-        customRC = ''
-          set autoindent
-          set cursorline
-          set expandtab
-          set nowrap
-          set number
-          set relativenumber
-          set shiftwidth=2
-          set tabstop=2
-        '';
-      };
-      defaultEditor = true;
-    };
-    nh.enable = true;
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        fuse
-      ];
-    };
-    proxychains = {
-      enable = true;
-      package = pkgs.proxychains-ng;
-      proxies = {
-        nekoray = {
-          enable = true;
-          type = "socks5";
-          host = "127.0.0.1";
-          port = 2080;
-        };
-      };
-    };
-    tmux.enable = true;
-    zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      interactiveShellInit = ''
-        source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-      '';
-      syntaxHighlighting.enable = true;
-    };
-  };
+  programs.nh.enable = lib.mkDefault true;
 
-  security.rtkit.enable = true;
+  security.rtkit.enable = lib.mkDefault true;
 
   services = {
-    fwupd.enable = true;
+    fwupd.enable = lib.mkDefault true;
     pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
+      enable = lib.mkDefault true;
+      alsa.enable = lib.mkDefault true;
+      alsa.support32Bit = lib.mkDefault true;
+      pulse.enable = lib.mkDefault true;
     };
   };
 
   system.stateVersion = "24.05";
-  time.timeZone = "Asia/Yekaterinburg";
-  
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users.ashgoldofficial = {
-      isNormalUser = true;
-      description = "Andrey Shaat";
-      extraGroups = [ "networkmanager" "wheel" "wireshark" ];
-    };
-  };
+  time.timeZone = lib.mkDefault "Asia/Yekaterinburg";
 }

@@ -7,7 +7,7 @@
     gnome.enable = true;
     firefox.enable = true;
     firefox-gnome-theme = {
-      enable = true;
+      enable = false;
       profiles = [ "default" ];
     };
   };

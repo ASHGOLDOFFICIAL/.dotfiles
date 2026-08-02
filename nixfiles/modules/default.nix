@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./cli
     ./gui
     ./hardware
     ./server
